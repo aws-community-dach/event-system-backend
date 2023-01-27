@@ -1330,7 +1330,7 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-cdk-lib@^2.1.0:
+aws-cdk-lib@^2.60.0:
   version "2.62.2"
   resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.62.2.tgz#520d93af6c593381e92e8dc9a768fa770fa3223c"
   integrity sha512-ynyoEFQckICFJzbUd89pWjol3GGbxRF05E8BCPEyy++vLHJZdqaJxRL4REl4lrdznnkb1kvxtBSGg4cOkR4o3w==
@@ -1348,7 +1348,7 @@ aws-cdk-lib@^2.1.0:
     semver "^7.3.8"
     yaml "1.10.2"
 
-aws-cdk@^2.1.0:
+aws-cdk@^2.60.0:
   version "2.62.2"
   resolved "https://registry.yarnpkg.com/aws-cdk/-/aws-cdk-2.62.2.tgz#366708c918c13158e2d9e335f6e70c8bb7fb9c08"
   integrity sha512-fACUQEdc43AfiqKKXUZLuHB2VADLU965hl50Fn6BhMemFmUsc+iS/GFfOwvfCUO3/iaRtsn/gk+dQ3zZ+snKRw==
