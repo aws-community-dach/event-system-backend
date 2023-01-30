@@ -1,23 +1,15 @@
-import { App, Stack, StackProps } from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-
-export class MyStack extends Stack {
-  constructor(scope: Construct, id: string, props: StackProps = {}) {
-    super(scope, id, props);
-
-    // define resources here...
-  }
-}
-
-// for development, use account/region from cdk cli
-const devEnv = {
-  account: process.env.CDK_DEFAULT_ACCOUNT,
-  region: process.env.CDK_DEFAULT_REGION,
-};
+import { App } from 'aws-cdk-lib';
+import { ApplicationStage } from './stage';
 
 const app = new App();
 
-new MyStack(app, 'event-system-backend-dev', { env: devEnv });
-// new MyStack(app, 'event-system-backend-prod', { env: prodEnv });
+new ApplicationStage(app, 'Dev', {
+  env: {
+    account: '123456789012',
+    region: 'eu-central-1',
+  },
+  domainName: 'events-test.aws-community.de',
+  stage: 'dev',
+});
 
 app.synth();

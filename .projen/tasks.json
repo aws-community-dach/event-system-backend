@@ -70,6 +70,9 @@
       "steps": [
         {
           "exec": "ts-node --project tsconfig.dev.json .projenrc.ts"
+        },
+        {
+          "spawn": "generate:api:registrationapi"
         }
       ]
     },
@@ -120,6 +123,15 @@
       "steps": [
         {
           "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools projenrc .projenrc.ts"
+        }
+      ]
+    },
+    "generate:api:registrationapi": {
+      "name": "generate:api:registrationapi",
+      "description": "Generate Types from the OpenAPI specification",
+      "steps": [
+        {
+          "exec": "openapi-typescript ./src/definitions/registration-api.yaml --output src/generated/rest.registrationapi-model.generated.ts"
         }
       ]
     },

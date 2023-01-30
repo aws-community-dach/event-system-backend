@@ -1,4 +1,4 @@
-import { ServerlessProject } from '@taimos/cdk-serverless-v2/lib/projen';
+import { RestApi, ServerlessProject } from '@taimos/cdk-serverless-v2/lib/projen';
 
 const project = new ServerlessProject({
   cdkVersion: '2.60.0',
@@ -9,6 +9,11 @@ const project = new ServerlessProject({
     '@taimos/cdk-serverless-v2',
     'date-fns',
   ],
+});
+
+new RestApi(project, {
+  apiName: 'RegistrationApi',
+  definitionFile: './src/definitions/registration-api.yaml',
 });
 
 project.synth();
