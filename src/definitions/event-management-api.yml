@@ -13,6 +13,7 @@ paths:
       responses:
         200:
           description: Returns a list of all events
+          $ref: '#/components/responses/ListOfEvents'
     post:
       tags:
         - Events
@@ -138,6 +139,12 @@ components:
         applications/json:
           schema:
             $ref: '#/components/schemas/ListOfParticipants'
+    ListOfEvents:
+      description: OK
+      content:
+        applications/json:
+          schema:
+            $ref: '#/components/schemas/ListOfEvents'
 
   schemas:
     Participants:
@@ -177,3 +184,7 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/EventRegister'
+    ListOfEvents:
+      type: array
+      items:
+        $ref: '#/components/schemas/Event'
