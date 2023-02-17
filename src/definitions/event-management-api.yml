@@ -1,0 +1,179 @@
+openapi: '3.0.2'
+info:
+  title: Event management
+  version: '1.0'
+servers:
+  - url: https://api.server.test/v1
+paths:
+  /events:
+    get:
+      tags:
+        - Events
+      summary: Returns all events
+      responses:
+        200:
+          description: Returns a list of all events
+    post:
+      tags:
+        - Events
+      summary: Creates a new event
+      requestBody:
+        $ref: '#/components/requestBodies/Event'
+      responses:
+        201:
+          $ref: '#/components/responses/Event'
+          description: Created a new event       
+    
+  /events/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      tags:
+        - Events
+      summary: Returns a specific event
+      responses:
+        200:
+          $ref: '#/components/responses/Event'
+          description: Returned a specific event
+    put:
+      tags:
+        - Events
+      summary: Updates an existing event
+      requestBody:
+        $ref: '#/components/requestBodies/Event'
+      responses:
+        200:
+          $ref: '#/components/responses/Event'
+          description: Updated an existing event
+    delete:
+      tags:
+        - Events
+      summary: Deletes an existing event
+      responses:
+        204:
+          description: Deleted event
+  /events/{id}/participants:
+    get:
+      tags:
+        - Events
+      summary: Returns all participants for a specific event
+      responses:
+        200: 
+          $ref: '#/components/responses/ListOfParticipants'
+          description: Returns all participants for a specific event
+
+  /events/{id}/register:
+    post:
+      tags:
+      - Events
+      summary: Registers a participant for an event
+      requestBody:
+        $ref: '#/components/requestBodies/Participants'
+      responses:
+        201:
+          description: Registered the participant
+    put:
+      tags:
+        - Events
+      summary: Deregisters a participant from an event
+      requestBody:
+        $ref: '#/components/requestBodies/EventRegister'
+      responses:
+        200:
+          $ref: '#/components/responses/EventRegister'
+  
+components:
+  parameters:
+    id:
+      name: objectID
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Corresponding id
+  
+  requestBodies:
+    Participants:
+      content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Participants'
+    Event:
+      content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+    EventRegister:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EventRegister'
+          
+  responses:
+    Participants:
+      description: OK
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/BaseResponse'
+              - $ref: '#/components/schemas/Participants'
+    Event:
+      description: OK
+      content:
+        application/json:
+          schema:
+             allOf:
+              - $ref: '#/components/schemas/BaseResponse'
+              - $ref: '#/components/schemas/Event'
+    EventRegister:
+      description: OK
+      content:
+        application/json:
+          schema:
+              $ref: '#/components/schemas/EventRegister'
+    ListOfParticipants:
+      description: OK
+      content:
+        applications/json:
+          schema:
+            $ref: '#/components/schemas/ListOfParticipants'
+
+  schemas:
+    Participants:
+      type: object
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        email:
+          type: string
+    Event:
+      type: object
+      properties:
+        name:
+          type: string
+        date:
+          type: string
+        location:
+          type: string
+        organizerID:
+          type: integer
+    BaseResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+    EventRegister:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Participants'
+      properties:
+        enrolled:
+          type: boolean
+          # possible validation
+    ListOfParticipants:
+      type: array
+      items:
+        $ref: '#/components/schemas/EventRegister'
