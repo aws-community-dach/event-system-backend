@@ -54,6 +54,8 @@ paths:
         204:
           description: Deleted event
   /events/{id}/participants:
+    parameters:
+        - $ref: '#/components/parameters/id'
     get:
       tags:
         - Events
@@ -64,6 +66,8 @@ paths:
           description: Returns all participants for a specific event
 
   /events/{id}/register:
+    parameters:
+        - $ref: '#/components/parameters/id'
     post:
       tags:
       - Events
@@ -86,7 +90,7 @@ paths:
 components:
   parameters:
     id:
-      name: objectID
+      name: id
       in: path
       required: true
       schema:
