@@ -27,9 +27,9 @@ paths:
           $ref: '#/components/responses/Event'
           description: Created a new event       
     
-  /events/{id}:
+  /events/{eventID}:
     parameters:
-      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/eventID'
     get:
       tags:
         - Events
@@ -58,9 +58,9 @@ paths:
       responses:
         204:
           description: Deleted event
-  /events/{id}/participants:
+  /events/{eventID}/participants:
     parameters:
-        - $ref: '#/components/parameters/id'
+        - $ref: '#/components/parameters/eventID'
     get:
       tags:
         - Events
@@ -70,48 +70,54 @@ paths:
         200: 
           $ref: '#/components/responses/ListOfParticipants'
           description: Returns all participants for a specific event
-
-  /events/{id}/register:
-    parameters:
-        - $ref: '#/components/parameters/id'
     post:
       tags:
-      - Events
+        - Events
       summary: Registers a participant for an event
       operationId: registerEventParticipant
       requestBody:
-        $ref: '#/components/requestBodies/Participants'
+        $ref: '#/components/requestBodies/Participant'
       responses:
         201:
           description: Registered the participant
-    put:
+      
+  /events/{eventID}/participant/{participantID}:
+    parameters:
+      - $ref: '#/components/parameters/eventID'
+      - $ref: '#/components/parameters/participantID'
+    delete:
       tags:
         - Events
       summary: Deregisters a participant from an event
-      operationId: changeEventParticipant
-      requestBody:
-        $ref: '#/components/requestBodies/EventRegister'
+      operationId: deleteEventParticipant
       responses:
-        200:
-          $ref: '#/components/responses/EventRegister'
+        204:
+          description: Deleted event
   
 components:
   parameters:
-    id:
-      name: id
+    eventID:
+      name: eventID
       in: path
       required: true
       schema:
         type: integer
-      description: Corresponding id
-  
+      description: ID of the event
+    participantID:
+      name: participantID
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ID of the participant
+
   requestBodies:
-    Participants:
+    Participant:
       required: true
       content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Participants'
+              $ref: '#/components/schemas/Participant'
     Event:
       required: true
       content:
@@ -126,14 +132,14 @@ components:
             $ref: '#/components/schemas/EventRegister'
           
   responses:
-    Participants:
+    Participant:
       description: OK
       content:
         application/json:
           schema:
             allOf:
               - $ref: '#/components/schemas/BaseResponse'
-              - $ref: '#/components/schemas/Participants'
+              - $ref: '#/components/schemas/Participant'
     Event:
       description: OK
       content:
@@ -162,7 +168,7 @@ components:
             $ref: '#/components/schemas/ListOfEvents'
 
   schemas:
-    Participants:
+    Participant:
       type: object
       properties:
         name:
@@ -190,7 +196,7 @@ components:
     EventRegister:
       type: object
       allOf:
-        - $ref: '#/components/schemas/Participants'
+        - $ref: '#/components/schemas/Participant'
       properties:
         enrolled:
           type: boolean
