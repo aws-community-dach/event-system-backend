@@ -10,6 +10,7 @@ paths:
       tags:
         - Events
       summary: Returns all events
+      operationId: listEvents
       responses:
         200:
           description: Returns a list of all events
@@ -18,6 +19,7 @@ paths:
       tags:
         - Events
       summary: Creates a new event
+      operationId: createEvent
       requestBody:
         $ref: '#/components/requestBodies/Event'
       responses:
@@ -32,6 +34,7 @@ paths:
       tags:
         - Events
       summary: Returns a specific event
+      operationId: getEventDetails
       responses:
         200:
           $ref: '#/components/responses/Event'
@@ -40,6 +43,7 @@ paths:
       tags:
         - Events
       summary: Updates an existing event
+      operationId: updateEvent
       requestBody:
         $ref: '#/components/requestBodies/Event'
       responses:
@@ -50,6 +54,7 @@ paths:
       tags:
         - Events
       summary: Deletes an existing event
+      operationId: deleteEvent
       responses:
         204:
           description: Deleted event
@@ -60,6 +65,7 @@ paths:
       tags:
         - Events
       summary: Returns all participants for a specific event
+      operationId: listEventParticipants
       responses:
         200: 
           $ref: '#/components/responses/ListOfParticipants'
@@ -72,6 +78,7 @@ paths:
       tags:
       - Events
       summary: Registers a participant for an event
+      operationId: registerEventParticipant
       requestBody:
         $ref: '#/components/requestBodies/Participants'
       responses:
@@ -81,6 +88,7 @@ paths:
       tags:
         - Events
       summary: Deregisters a participant from an event
+      operationId: changeEventParticipant
       requestBody:
         $ref: '#/components/requestBodies/EventRegister'
       responses:
@@ -99,16 +107,19 @@ components:
   
   requestBodies:
     Participants:
+      required: true
       content:
           application/json:
             schema:
               $ref: '#/components/schemas/Participants'
     Event:
+      required: true
       content:
           application/json:
             schema:
               $ref: '#/components/schemas/Event'
     EventRegister:
+      required: true
       content:
         application/json:
           schema:

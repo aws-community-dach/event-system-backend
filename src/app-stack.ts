@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { RegistrationApiRestApi } from './generated/rest.registrationapi-api.generated';
+import { EventMgmtApiRestApi } from './generated/rest.eventmgmtapi-api.generated';
 
 
 export interface ApplicationStackProps extends cdk.StackProps {
@@ -13,7 +13,7 @@ export class ApplicationStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: ApplicationStackProps) {
     super(scope, id, props);
 
-    new RegistrationApiRestApi(this, 'RegistrationApi', {
+    new EventMgmtApiRestApi(this, 'Api', {
       stageName: props.stage,
       domainName: props.domainName,
       apiHostname: 'api',

@@ -72,7 +72,7 @@
           "exec": "ts-node --project tsconfig.dev.json .projenrc.ts"
         },
         {
-          "spawn": "generate:api:registrationapi"
+          "spawn": "generate:api:eventmgmtapi"
         }
       ]
     },
@@ -126,12 +126,12 @@
         }
       ]
     },
-    "generate:api:registrationapi": {
-      "name": "generate:api:registrationapi",
+    "generate:api:eventmgmtapi": {
+      "name": "generate:api:eventmgmtapi",
       "description": "Generate Types from the OpenAPI specification",
       "steps": [
         {
-          "exec": "openapi-typescript ./src/definitions/registration-api.yaml --output src/generated/rest.registrationapi-model.generated.ts"
+          "exec": "openapi-typescript ./src/definitions/event-management-api.yaml --output src/generated/rest.eventmgmtapi-model.generated.ts"
         }
       ]
     },

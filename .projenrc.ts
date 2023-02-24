@@ -12,8 +12,8 @@ const project = new ServerlessProject({
 });
 
 new RestApi(project, {
-  apiName: 'RegistrationApi',
-  definitionFile: './src/definitions/registration-api.yaml',
+  apiName: 'EventMgmtApi',
+  definitionFile: './src/definitions/event-management-api.yaml',
 });
 
 project.synth();

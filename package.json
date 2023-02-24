@@ -11,7 +11,7 @@
     "diff": "npx projen diff",
     "eject": "npx projen eject",
     "eslint": "npx projen eslint",
-    "generate:api:registrationapi": "npx projen generate:api:registrationapi",
+    "generate:api:eventmgmtapi": "npx projen generate:api:eventmgmtapi",
     "package": "npx projen package",
     "post-compile": "npx projen post-compile",
     "post-upgrade": "npx projen post-upgrade",
