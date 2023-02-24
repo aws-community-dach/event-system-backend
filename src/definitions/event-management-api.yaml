@@ -151,13 +151,13 @@ components:
     ListOfParticipants:
       description: OK
       content:
-        applications/json:
+        application/json:
           schema:
             $ref: '#/components/schemas/ListOfParticipants'
     ListOfEvents:
       description: OK
       content:
-        applications/json:
+        application/json:
           schema:
             $ref: '#/components/schemas/ListOfEvents'
 

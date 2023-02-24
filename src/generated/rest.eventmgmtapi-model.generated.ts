@@ -80,13 +80,13 @@ export interface components {
     /** @description OK */
     ListOfParticipants: {
       content: {
-        "applications/json": components["schemas"]["ListOfParticipants"];
+        "application/json": components["schemas"]["ListOfParticipants"];
       };
     };
     /** @description OK */
     ListOfEvents: {
       content: {
-        "applications/json": components["schemas"]["ListOfEvents"];
+        "application/json": components["schemas"]["ListOfEvents"];
       };
     };
   };
