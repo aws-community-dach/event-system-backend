@@ -2,13 +2,11 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { RegistrationApiRestApi } from './generated/rest.registrationapi-api.generated';
 
-export interface ApplicationStackSettings {
+
+export interface ApplicationStackProps extends cdk.StackProps {
   readonly stage: string;
   readonly domainName: string;
-}
-
-export interface ApplicationStackProps extends cdk.StackProps, ApplicationStackSettings {
-  //
+  readonly zone: cdk.aws_route53.IHostedZone;
 }
 
 export class ApplicationStack extends cdk.Stack {

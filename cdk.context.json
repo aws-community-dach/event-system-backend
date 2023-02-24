@@ -1,1 +1,6 @@
-{}
+{
+  "hosted-zone:account=574436697058:domainName=events-test.aws-community.de:region=eu-central-1": {
+    "Id": "/hostedzone/Z096174225SRMTHPZJSFM",
+    "Name": "events-test.aws-community.de."
+  }
+}
