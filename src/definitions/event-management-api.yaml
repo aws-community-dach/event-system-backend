@@ -81,10 +81,23 @@ paths:
         201:
           description: Registered the participant
       
-  /events/{eventID}/participant/{participantID}:
+  /events/{eventID}/participants/{participantID}:
     parameters:
       - $ref: '#/components/parameters/eventID'
       - $ref: '#/components/parameters/participantID'
+    # How does a user update the data?
+    put:
+      tags:
+        - Events
+      summary: Updates participant data
+      operationId: updateEventParticipant
+      requestBody:
+        $ref: '#/components/requestBodies/Participant'
+      responses:
+        200:
+          description: Updated participant data
+          $ref: '#/components/responses/Participant'
+
     delete:
       tags:
         - Events
@@ -92,7 +105,7 @@ paths:
       operationId: deleteEventParticipant
       responses:
         204:
-          description: Deleted event
+          description: Deregistered particpant from event
   
 components:
   parameters:
