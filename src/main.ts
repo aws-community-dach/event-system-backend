@@ -1,4 +1,5 @@
 import { App, Stack, StackProps, pipelines } from 'aws-cdk-lib';
+import { LinuxBuildImage } from 'aws-cdk-lib/aws-codebuild';
 import { Construct } from 'constructs';
 import { ApplicationStage } from './stage';
 
@@ -15,6 +16,9 @@ export class PipelineStack extends Stack {
         input: pipelines.CodePipelineSource.connection('aws-community-dach/event-system-backend', 'main', {
           connectionArn: 'arn:aws:codestar-connections:eu-central-1:002630180209:connection/417c38ea-e616-4a2d-bb76-8f5284ad2bfe',
         }),
+        buildEnvironment: {
+          buildImage: LinuxBuildImage.STANDARD_6_0,
+        },
         installCommands: [
           'yarn install --frozen-lockfile',
         ],
