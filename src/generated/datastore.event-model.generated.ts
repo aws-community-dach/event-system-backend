@@ -25,7 +25,7 @@ export const Schema = {
     "GSI1": {
       "hash": "GSI1PK",
       "sort": "GSI1SK",
-      "project": "ALL"
+      "project": "all"
     }
   },
   "models": {

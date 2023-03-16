@@ -1,4 +1,4 @@
-import { api, errors } from '@taimos/cdk-serverless-v2/lib/lambda';
+import { api } from '@taimos/cdk-serverless-v2/lib/lambda';
 import { Event, Index_GSI1_Name } from '../generated/datastore.event-model.generated';
 import { operations } from '../generated/rest.eventmgmtapi-model.generated';
 
