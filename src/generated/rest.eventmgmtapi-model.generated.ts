@@ -11,7 +11,7 @@ export interface paths {
     /** Creates a new event */
     post: operations["createEvent"];
   };
-  "/events/{id}": {
+  "/events/{eventID}": {
     /** Returns a specific event */
     get: operations["getEventDetails"];
     /** Updates an existing event */
@@ -20,16 +20,18 @@ export interface paths {
     delete: operations["deleteEvent"];
     
   };
-  "/events/{id}/participants": {
+  "/events/{eventID}/participants": {
     /** Returns all participants for a specific event */
     get: operations["listEventParticipants"];
-    
-  };
-  "/events/{id}/register": {
-    /** Deregisters a participant from an event */
-    put: operations["changeEventParticipant"];
     /** Registers a participant for an event */
     post: operations["registerEventParticipant"];
+    
+  };
+  "/events/{eventID}/participants/{participantID}": {
+    /** Updates participant data */
+    put: operations["updateEventParticipant"];
+    /** Deregisters a participant from an event */
+    delete: operations["deleteEventParticipant"];
     
   };
 }
@@ -38,7 +40,7 @@ export type webhooks = Record<string, never>;
 
 export interface components {
   schemas: {
-    Participants: {
+    Participant: {
       name?: string;
       displayName?: string;
       email?: string;
@@ -54,15 +56,15 @@ export interface components {
     };
     EventRegister: {
       enrolled?: boolean;
-    } & components["schemas"]["Participants"];
+    } & components["schemas"]["Participant"];
     ListOfParticipants: (components["schemas"]["EventRegister"])[];
     ListOfEvents: (components["schemas"]["Event"])[];
   };
   responses: {
     /** @description OK */
-    Participants: {
+    Participant: {
       content: {
-        "application/json": components["schemas"]["BaseResponse"] & components["schemas"]["Participants"];
+        "application/json": components["schemas"]["BaseResponse"] & components["schemas"]["Participant"];
       };
     };
     /** @description OK */
@@ -91,13 +93,15 @@ export interface components {
     };
   };
   parameters: {
-    /** @description Corresponding id */
-    id: number;
+    /** @description ID of the event */
+    eventID: number;
+    /** @description ID of the participant */
+    participantID: number;
   };
   requestBodies: {
-    Participants: {
+    Participant: {
       content: {
-        "application/json": components["schemas"]["Participants"];
+        "application/json": components["schemas"]["Participant"];
       };
     };
     Event: {
@@ -163,19 +167,27 @@ export interface operations {
       200: components["responses"]["ListOfParticipants"];
     };
   };
-  changeEventParticipant: {
-    /** Deregisters a participant from an event */
-    requestBody: components["requestBodies"]["EventRegister"];
-    responses: {
-      200: components["responses"]["EventRegister"];
-    };
-  };
   registerEventParticipant: {
     /** Registers a participant for an event */
-    requestBody: components["requestBodies"]["Participants"];
+    requestBody: components["requestBodies"]["Participant"];
     responses: {
       /** @description Registered the participant */
       201: never;
+    };
+  };
+  updateEventParticipant: {
+    /** Updates participant data */
+    requestBody: components["requestBodies"]["Participant"];
+    responses: {
+      /** @description Updated participant data */
+      200: components["responses"]["Participant"];
+    };
+  };
+  deleteEventParticipant: {
+    /** Deregisters a participant from an event */
+    responses: {
+      /** @description Deregistered particpant from event */
+      204: never;
     };
   };
 }
