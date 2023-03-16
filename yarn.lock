@@ -2775,7 +2775,7 @@ dot-prop@^6.0.1:
   dependencies:
     is-obj "^2.0.0"
 
-dynamodb-onetable@*:
+dynamodb-onetable@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/dynamodb-onetable/-/dynamodb-onetable-2.6.1.tgz#1b3f576fde4dfb95cc359ba1a1c2f7d5c4f301ef"
   integrity sha512-8NjCLG6NFVctAnPfSc/0J1jR3u253xoyI3AaTmIZWAQWlg/8ZVuS2YFDa5g9vkwXEVBozKccO27P4XrZUWsQtw==
