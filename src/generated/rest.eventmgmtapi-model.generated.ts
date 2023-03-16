@@ -49,16 +49,16 @@ export interface components {
       name?: string;
       date?: string;
       location?: string;
-      organizerID?: number;
+      organizerID?: string;
     };
     BaseResponse: {
-      id?: number;
+      id?: string;
     };
     EventRegister: {
       enrolled?: boolean;
     } & components["schemas"]["Participant"];
-    ListOfParticipants: (components["schemas"]["EventRegister"])[];
-    ListOfEvents: (components["schemas"]["Event"])[];
+    ListOfParticipants: (components["schemas"]["BaseResponse"] & components["schemas"]["EventRegister"])[];
+    ListOfEvents: (components["schemas"]["BaseResponse"] & components["schemas"]["Event"])[];
   };
   responses: {
     /** @description OK */

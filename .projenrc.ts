@@ -1,4 +1,4 @@
-import { RestApi, ServerlessProject } from '@taimos/cdk-serverless-v2/lib/projen';
+import { RestApi, ServerlessProject, Datastore } from '@taimos/cdk-serverless-v2/lib/projen';
 
 const project = new ServerlessProject({
   cdkVersion: '2.60.0',
@@ -14,6 +14,11 @@ const project = new ServerlessProject({
 new RestApi(project, {
   apiName: 'EventMgmtApi',
   definitionFile: './src/definitions/event-management-api.yaml',
+});
+
+new Datastore(project, {
+  modelName: 'Event',
+  definitionFile: './src/definitions/event-datamodel.json',
 });
 
 project.synth();

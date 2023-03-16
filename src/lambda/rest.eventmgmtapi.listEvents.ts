@@ -1,8 +1,15 @@
-import { http, errors } from '@taimos/lambda-toolbox';
+import { api, errors } from '@taimos/cdk-serverless-v2/lib/lambda';
+import { Event, Index_GSI1_Name } from '../generated/datastore.event-model.generated';
 import { operations } from '../generated/rest.eventmgmtapi-model.generated';
 
-export const handler = http.createOpenApiHandler<operations['listEvents']>(async (ctx) => {
-  ctx.logger.info(JSON.stringify(ctx.event));
+export const handler = api.createOpenApiHandler<operations['listEvents']>(async (_ctx) => {
+  const events = await Event.find({}, { index: Index_GSI1_Name });
 
-  throw new errors.HttpError(500, 'Not yet implemented');
+  return events.map(e => ({
+    id: e.id!,
+    name: e.name!,
+    date: e.date!.toISOString(),
+    location: '',
+    organizerID: '',
+  }));
 });

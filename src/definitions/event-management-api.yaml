@@ -200,12 +200,12 @@ components:
         location:
           type: string
         organizerID:
-          type: integer
+          type: string
     BaseResponse:
       type: object
       properties:
         id:
-          type: integer
+          type: string
     EventRegister:
       type: object
       allOf:
@@ -217,8 +217,12 @@ components:
     ListOfParticipants:
       type: array
       items:
-        $ref: '#/components/schemas/EventRegister'
+        allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - $ref: '#/components/schemas/EventRegister'
     ListOfEvents:
       type: array
       items:
-        $ref: '#/components/schemas/Event'
+        allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - $ref: '#/components/schemas/Event'

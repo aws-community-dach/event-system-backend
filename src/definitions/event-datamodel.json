@@ -1,0 +1,52 @@
+{
+  "indexes": {
+    "primary": {
+      "hash": "PK",
+      "sort": "SK"
+    },
+    "GSI1": {
+      "hash": "GSI1PK",
+      "sort": "GSI1SK",
+      "project": "ALL"
+    }
+  },
+  "models": {
+    "Event": {
+      "PK": {
+        "type": "string",
+        "value": "EVENT#${id}"
+      },
+      "SK": {
+        "type": "string",
+        "value": "DETAILS"
+      },
+      "id": {
+        "type": "string",
+        "required": true,
+        "generate": "ulid"
+      },
+      "GSI1PK": {
+        "type": "string",
+        "value": "EVENTS"
+      },
+      "GSI1SK": {
+        "type": "string",
+        "value": "${date}"
+      },
+      "name": {
+        "type": "string",
+        "required": true
+      },
+      "date": {
+        "type": "date",
+        "required": true
+      },
+      "description": {
+        "type": "string"
+      }
+    }
+  },
+  "version": "0.1.0",
+  "format": "onetable:1.1.0",
+  "queries": {}
+}
