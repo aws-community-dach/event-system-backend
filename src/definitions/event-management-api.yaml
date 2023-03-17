@@ -96,7 +96,6 @@ paths:
       responses:
         200:
           description: Updated participant data
-          $ref: '#/components/responses/Participant'
 
     delete:
       tags:
@@ -201,6 +200,14 @@ components:
           type: string
         organizerID:
           type: string
+        summary:
+          type: string
+        description:
+          type: string
+        agenda:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agenda'
     BaseResponse:
       type: object
       properties:
@@ -211,8 +218,8 @@ components:
       allOf:
         - $ref: '#/components/schemas/Participant'
       properties:
-        enrolled:
-          type: boolean
+        confirmationId:
+          type: string
           # possible validation
     ListOfParticipants:
       type: array
@@ -226,3 +233,13 @@ components:
         allOf:
         - $ref: '#/components/schemas/BaseResponse'
         - $ref: '#/components/schemas/Event'
+    Agenda:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+        title:
+          type: string
+        
