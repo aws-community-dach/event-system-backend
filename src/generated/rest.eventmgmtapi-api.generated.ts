@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { Construct } from 'constructs';
-import { RestApi, RestApiProps } from '@taimos/cdk-serverless-v2/lib/constructs';
+import { RestApi, RestApiProps } from 'cdk-serverless/lib/constructs';
 import { operations, paths } from './rest.eventmgmtapi-model.generated';
 
 export interface EventMgmtApiRestApiProps extends Omit<RestApiProps<operations>, 'definitionFileName' | 'apiName'> {

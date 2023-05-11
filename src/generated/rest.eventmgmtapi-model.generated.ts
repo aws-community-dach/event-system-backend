@@ -18,21 +18,34 @@ export interface paths {
     put: operations["updateEvent"];
     /** Deletes an existing event */
     delete: operations["deleteEvent"];
-    
+    parameters: {
+      path: {
+        eventID: components["parameters"]["eventID"];
+      };
+    };
   };
   "/events/{eventID}/participants": {
     /** Returns all participants for a specific event */
     get: operations["listEventParticipants"];
     /** Registers a participant for an event */
     post: operations["registerEventParticipant"];
-    
+    parameters: {
+      path: {
+        eventID: components["parameters"]["eventID"];
+      };
+    };
   };
   "/events/{eventID}/participants/{participantID}": {
     /** Updates participant data */
     put: operations["updateEventParticipant"];
     /** Deregisters a participant from an event */
     delete: operations["deleteEventParticipant"];
-    
+    parameters: {
+      path: {
+        eventID: components["parameters"]["eventID"];
+        participantID: components["parameters"]["participantID"];
+      };
+    };
   };
 }
 
@@ -50,15 +63,23 @@ export interface components {
       date?: string;
       location?: string;
       organizerID?: string;
+      summary?: string;
+      description?: string;
+      agenda?: (components["schemas"]["Agenda"])[];
     };
     BaseResponse: {
       id?: string;
     };
     EventRegister: {
-      enrolled?: boolean;
+      confirmationId?: string;
     } & components["schemas"]["Participant"];
     ListOfParticipants: (components["schemas"]["BaseResponse"] & components["schemas"]["EventRegister"])[];
     ListOfEvents: (components["schemas"]["BaseResponse"] & components["schemas"]["Event"])[];
+    Agenda: {
+      start?: string;
+      end?: string;
+      title?: string;
+    };
   };
   responses: {
     /** @description OK */
@@ -123,68 +144,105 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /** Returns all events */
   listEvents: {
-    /** Returns all events */
     responses: {
       /** @description Returns a list of all events */
       200: components["responses"]["ListOfEvents"];
     };
   };
+  /** Creates a new event */
   createEvent: {
-    /** Creates a new event */
     requestBody: components["requestBodies"]["Event"];
     responses: {
       /** @description Created a new event */
       201: components["responses"]["Event"];
     };
   };
+  /** Returns a specific event */
   getEventDetails: {
-    /** Returns a specific event */
+    parameters: {
+      path: {
+        eventID: components["parameters"]["eventID"];
+      };
+    };
     responses: {
       /** @description Returned a specific event */
       200: components["responses"]["Event"];
     };
   };
+  /** Updates an existing event */
   updateEvent: {
-    /** Updates an existing event */
+    parameters: {
+      path: {
+        eventID: components["parameters"]["eventID"];
+      };
+    };
     requestBody: components["requestBodies"]["Event"];
     responses: {
       /** @description Updated an existing event */
       200: components["responses"]["Event"];
     };
   };
+  /** Deletes an existing event */
   deleteEvent: {
-    /** Deletes an existing event */
+    parameters: {
+      path: {
+        eventID: components["parameters"]["eventID"];
+      };
+    };
     responses: {
       /** @description Deleted event */
       204: never;
     };
   };
+  /** Returns all participants for a specific event */
   listEventParticipants: {
-    /** Returns all participants for a specific event */
+    parameters: {
+      path: {
+        eventID: components["parameters"]["eventID"];
+      };
+    };
     responses: {
       /** @description Returns all participants for a specific event */
       200: components["responses"]["ListOfParticipants"];
     };
   };
+  /** Registers a participant for an event */
   registerEventParticipant: {
-    /** Registers a participant for an event */
+    parameters: {
+      path: {
+        eventID: components["parameters"]["eventID"];
+      };
+    };
     requestBody: components["requestBodies"]["Participant"];
     responses: {
       /** @description Registered the participant */
       201: never;
     };
   };
+  /** Updates participant data */
   updateEventParticipant: {
-    /** Updates participant data */
+    parameters: {
+      path: {
+        eventID: components["parameters"]["eventID"];
+        participantID: components["parameters"]["participantID"];
+      };
+    };
     requestBody: components["requestBodies"]["Participant"];
     responses: {
       /** @description Updated participant data */
-      200: components["responses"]["Participant"];
+      200: never;
     };
   };
+  /** Deregisters a participant from an event */
   deleteEventParticipant: {
-    /** Deregisters a participant from an event */
+    parameters: {
+      path: {
+        eventID: components["parameters"]["eventID"];
+        participantID: components["parameters"]["participantID"];
+      };
+    };
     responses: {
       /** @description Deregistered particpant from event */
       204: never;

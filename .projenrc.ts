@@ -1,4 +1,4 @@
-import { RestApi, ServerlessProject, Datastore } from '@taimos/cdk-serverless-v2/lib/projen';
+import { RestApi, ServerlessProject, Datastore } from 'cdk-serverless/lib/projen';
 
 const project = new ServerlessProject({
   cdkVersion: '2.60.0',
@@ -6,7 +6,7 @@ const project = new ServerlessProject({
   name: 'event-system-backend',
   deps: [
     'projen',
-    '@taimos/cdk-serverless-v2',
+    'cdk-serverless',
     'date-fns',
   ],
 });
