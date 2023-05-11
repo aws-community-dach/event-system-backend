@@ -44,6 +44,49 @@
       "description": {
         "type": "string"
       }
+    },
+    "Participant": {
+      "PK": {
+        "type": "string",
+        "value": "EVENT#${eventId}"
+      },
+      "SK": {
+        "type": "string",
+        "value": "PARTICIPANT#{email}"
+      },
+      "eventId": {
+        "type": "string",
+        "required": true
+      },
+      "GSI1PK": {
+        "type": "string",
+        "value": "PARTICIPANTS"
+      },
+      "GSI1SK": {
+        "type": "string",
+        "value": "${email}"
+      },
+      "name": {
+        "type": "string",
+        "required": true
+      },
+      "displayName": {
+        "type": "string",
+        "required": true
+      },
+      "email": {
+        "type": "string",
+        "required": true
+      },
+      "confirmed": {
+        "type": "boolean",
+        "required": true
+      },
+      "token": {
+        "type": "string",
+        "generate": "uuid",
+        "required": true
+      }
     }
   },
   "version": "0.1.0",

@@ -1,8 +1,22 @@
 import { api, errors } from 'cdk-serverless/lib/lambda';
+import { Event, Index_GSI1_Name } from '../generated/datastore.event-model.generated';
 import { operations } from '../generated/rest.eventmgmtapi-model.generated';
 
 export const handler = api.createOpenApiHandler<operations['getEventDetails']>(async (ctx) => {
-  ctx.logger.info(JSON.stringify(ctx.event));
+  const id = ctx.event.pathParameters!.eventID;
+  const event = await Event.get({ id }, { index: Index_GSI1_Name });
+  if (!event) {
+    throw new errors.NotFoundError();
+  }
 
-  throw new errors.HttpError(500, 'Not yet implemented');
+  return {
+    id: event!.id!,
+    name: event!.name!,
+    description: event!.description!,
+    date: event!.date?.toISOString(),
+    // location: '',
+    // summary: '',
+    // organizerID: '',
+    // agenda: [],
+  };
 });

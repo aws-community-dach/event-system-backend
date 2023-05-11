@@ -50,7 +50,7 @@
     "@aws-sdk/client-dynamodb": "^3.332.0",
     "@aws-sdk/lib-dynamodb": "^3.332.0",
     "aws-cdk-lib": "^2.60.0",
-    "cdk-serverless": "^2.0.3",
+    "cdk-serverless": "^2.0.4",
     "constructs": "^10.0.5",
     "date-fns": "^2.30.0",
     "dynamodb-onetable": "^2.6.2",

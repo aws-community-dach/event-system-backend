@@ -115,9 +115,9 @@ export interface components {
   };
   parameters: {
     /** @description ID of the event */
-    eventID: number;
+    eventID: string;
     /** @description ID of the participant */
-    participantID: number;
+    participantID: string;
   };
   requestBodies: {
     Participant: {

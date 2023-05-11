@@ -113,14 +113,14 @@ components:
       in: path
       required: true
       schema:
-        type: integer
+        type: string
       description: ID of the event
     participantID:
       name: participantID
       in: path
       required: true
       schema:
-        type: integer
+        type: string
       description: ID of the participant
 
   requestBodies:

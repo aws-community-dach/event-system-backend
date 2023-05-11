@@ -62,6 +62,49 @@ export const Schema = {
       "description": {
         "type": String
       }
+    },
+    "Participant": {
+      "PK": {
+        "type": String,
+        "value": "EVENT#${eventId}"
+      },
+      "SK": {
+        "type": String,
+        "value": "PARTICIPANT#{email}"
+      },
+      "eventId": {
+        "type": String,
+        "required": true
+      },
+      "GSI1PK": {
+        "type": String,
+        "value": "PARTICIPANTS"
+      },
+      "GSI1SK": {
+        "type": String,
+        "value": "${email}"
+      },
+      "name": {
+        "type": String,
+        "required": true
+      },
+      "displayName": {
+        "type": String,
+        "required": true
+      },
+      "email": {
+        "type": String,
+        "required": true
+      },
+      "confirmed": {
+        "type": Boolean,
+        "required": true
+      },
+      "token": {
+        "type": String,
+        "generate": "uuid",
+        "required": true
+      }
     }
   },
   "version": "0.1.0",
@@ -78,7 +121,10 @@ export const table = new Table({
   hidden: false,
 });
 
-export type EventType = Entity<typeof Schema.models.Event>
+export type EventType = Entity<typeof Schema.models.Event>;
 export const Event: Model<EventType> = table.getModel<EventType>('Event');
+
+export type ParticipantType = Entity<typeof Schema.models.Participant>;
+export const Participant: Model<ParticipantType> = table.getModel<ParticipantType>('Participant');
 
 
