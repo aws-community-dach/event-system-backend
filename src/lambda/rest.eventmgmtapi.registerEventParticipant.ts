@@ -6,18 +6,19 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['regis
   ctx.logger.info(JSON.stringify(ctx.event));
   ctx.logger.info(JSON.stringify(data));
 
-  const id = ctx.event.pathParameters!.eventID;
-  const event = await Event.get({ id }, { index: Index_GSI1_Name });
+  const eventId = ctx.event.pathParameters!.eventID;
+  const event = await Event.get({ id: eventId }, { index: Index_GSI1_Name });
   if (!event) {
     throw new errors.NotFoundError();
   }
 
   const participant = await Participant.create({
-    eventId: id,
+    eventId,
     confirmed: false,
     email: data.email,
     name: data.name,
     displayName: data.displayName,
+    customData: JSON.stringify(data.customData ?? {}),
   }, {
     exists: false,
   });
@@ -26,5 +27,5 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['regis
   // TODO send email for confirmation
 
   ctx.response.statusCode = 201;
-  ctx.response.headers.Location = `/events/${id}/participants/${data.email}`;
+  ctx.response.headers.Location = `/events/${eventId}/participants/${data.email}`;
 });

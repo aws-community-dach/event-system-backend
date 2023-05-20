@@ -14,7 +14,7 @@ export const handler = api.createOpenApiHandler<operations['getEventDetails']>(a
     name: event!.name!,
     description: event!.description!,
     date: event!.date?.toISOString(),
-    // location: '',
+    location: event!.location!,
     // summary: '',
     // organizerID: '',
     // agenda: [],

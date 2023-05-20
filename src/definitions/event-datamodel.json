@@ -41,6 +41,10 @@
         "type": "date",
         "required": true
       },
+      "location": {
+        "type": "string",
+        "required": true
+      },
       "description": {
         "type": "string"
       }
@@ -77,6 +81,10 @@
       "email": {
         "type": "string",
         "required": true
+      },
+      "customData": {
+        "type": "string",
+        "required": false
       },
       "confirmed": {
         "type": "boolean",

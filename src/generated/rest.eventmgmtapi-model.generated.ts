@@ -57,6 +57,7 @@ export interface components {
       name?: string;
       displayName?: string;
       email?: string;
+      customData?: Record<string, never>;
     };
     Event: {
       name?: string;

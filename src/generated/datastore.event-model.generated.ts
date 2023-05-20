@@ -59,6 +59,10 @@ export const Schema = {
         "type": Date,
         "required": true
       },
+      "location": {
+        "type": String,
+        "required": true
+      },
       "description": {
         "type": String
       }
@@ -95,6 +99,10 @@ export const Schema = {
       "email": {
         "type": String,
         "required": true
+      },
+      "customData": {
+        "type": String,
+        "required": false
       },
       "confirmed": {
         "type": Boolean,

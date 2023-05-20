@@ -9,7 +9,7 @@ export const handler = api.createOpenApiHandler<operations['listEvents']>(async 
     id: e.id!,
     name: e.name!,
     date: e.date!.toISOString(),
-    location: '',
+    location: e.location!,
     organizerID: '',
   }));
 });
