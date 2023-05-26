@@ -21,6 +21,7 @@ export class ApplicationStack extends cdk.Stack {
       domainName: props.domainName,
       apiHostname: 'api',
       singleTableDatastore,
+      cors: true,
     });
 
   }
