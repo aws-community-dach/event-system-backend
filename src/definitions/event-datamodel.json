@@ -56,7 +56,7 @@
       },
       "SK": {
         "type": "string",
-        "value": "PARTICIPANT#{email}"
+        "value": "PARTICIPANT#${email}"
       },
       "eventId": {
         "type": "string",
