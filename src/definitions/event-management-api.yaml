@@ -85,6 +85,11 @@ paths:
     parameters:
       - $ref: '#/components/parameters/eventID'
       - $ref: '#/components/parameters/participantID'
+      - in: query
+        name: token
+        schema: 
+          type: string
+        description: unique token
     # How does a user update the data?
     put:
       tags:
@@ -96,11 +101,6 @@ paths:
       responses:
         200:
           description: Updated participant data
-  /events/{eventID}/participants/{participantID}/token/{token}:
-    parameters:
-      - $ref: '#/components/parameters/eventID'
-      - $ref: '#/components/parameters/participantID'
-      - $ref: '#/components/parameters/token'
     delete:
       tags:
         - Events
@@ -109,7 +109,7 @@ paths:
       responses:
         204:
           description: Deregistered particpant from event
-  
+
 components:
   parameters:
     eventID:
