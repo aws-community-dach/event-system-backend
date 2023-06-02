@@ -38,12 +38,21 @@ export interface paths {
   "/events/{eventID}/participants/{participantID}": {
     /** Updates participant data */
     put: operations["updateEventParticipant"];
+    parameters: {
+      path: {
+        eventID: components["parameters"]["eventID"];
+        participantID: components["parameters"]["participantID"];
+      };
+    };
+  };
+  "/events/{eventID}/participants/{participantID}/token/{token}": {
     /** Deregisters a participant from an event */
     delete: operations["deleteEventParticipant"];
     parameters: {
       path: {
         eventID: components["parameters"]["eventID"];
         participantID: components["parameters"]["participantID"];
+        token: components["parameters"]["token"];
       };
     };
   };
@@ -119,6 +128,8 @@ export interface components {
     eventID: string;
     /** @description ID of the participant */
     participantID: string;
+    /** @description unique token */
+    token: string;
   };
   requestBodies: {
     Participant: {
@@ -242,6 +253,7 @@ export interface operations {
       path: {
         eventID: components["parameters"]["eventID"];
         participantID: components["parameters"]["participantID"];
+        token: components["parameters"]["token"];
       };
     };
     responses: {

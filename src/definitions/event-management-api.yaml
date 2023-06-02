@@ -96,7 +96,11 @@ paths:
       responses:
         200:
           description: Updated participant data
-
+  /events/{eventID}/participants/{participantID}/token/{token}:
+    parameters:
+      - $ref: '#/components/parameters/eventID'
+      - $ref: '#/components/parameters/participantID'
+      - $ref: '#/components/parameters/token'
     delete:
       tags:
         - Events
@@ -122,6 +126,13 @@ components:
       schema:
         type: string
       description: ID of the participant
+    token:
+      name: token
+      in: path
+      required: true
+      schema:
+        type: string  
+      description: unique token 
 
   requestBodies:
     Participant:
