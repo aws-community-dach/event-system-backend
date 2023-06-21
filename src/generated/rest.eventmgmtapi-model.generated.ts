@@ -75,9 +75,7 @@ export interface components {
     BaseResponse: {
       id?: string;
     };
-    EventRegister: {
-      confirmationId?: string;
-    } & components["schemas"]["Participant"];
+    EventRegister: components["schemas"]["Participant"];
     ListOfParticipants: (components["schemas"]["BaseResponse"] & components["schemas"]["EventRegister"])[];
     ListOfEvents: (components["schemas"]["BaseResponse"] & components["schemas"]["Event"])[];
     Agenda: {
