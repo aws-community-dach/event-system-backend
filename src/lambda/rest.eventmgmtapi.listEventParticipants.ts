@@ -1,14 +1,14 @@
 import { api, errors } from 'cdk-serverless/lib/lambda';
-import { Participant, Event, Index_GSI1_Name} from '../generated/datastore.event-model.generated';
+import { Participant, Event } from '../generated/datastore.event-model.generated';
 import { operations } from '../generated/rest.eventmgmtapi-model.generated';
 
 export const handler = api.createOpenApiHandler<operations['listEventParticipants']>(async (ctx) => {
   ctx.logger.info(JSON.stringify(ctx.event));
 
-  //ctx.auth.assertAdmin();
+  ctx.auth.assertAdmin();
 
   const id = ctx.event.pathParameters!.eventID;
-  const event = await Event.get({ id: id }, { index: Index_GSI1_Name });
+  const event = await Event.get({ id: id });
   if (!event) {
     throw new errors.NotFoundError();
   }
@@ -21,7 +21,5 @@ export const handler = api.createOpenApiHandler<operations['listEventParticipant
     displayName: participant.displayName,
     email: participant.email,
     customData: participant.customData,
-    confirmationId: participant.token
-
   }))
 });

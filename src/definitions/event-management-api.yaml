@@ -230,10 +230,6 @@ components:
       type: object
       allOf:
         - $ref: '#/components/schemas/Participant'
-      properties:
-        confirmationId:
-          type: string
-          # possible validation
     ListOfParticipants:
       type: array
       items:
