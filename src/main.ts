@@ -37,14 +37,16 @@ export class PipelineStack extends Stack {
       stage: 'dev',
     }));
 
-    // pipeline.addStage(new ApplicationStage(this, 'Prod', {
-    //   env: {
-    //     account: '',
-    //     region: 'eu-central-1',
-    //   },
-    //   domainName: 'events.aws-community.de',
-    //   stage: 'prod',
-    // }));
+    pipeline.addStage(new ApplicationStage(this, 'Prod', {
+      env: {
+        account: '451567866306',
+        region: 'eu-central-1',
+      },
+      domainName: 'events.aws-community.de',
+      stage: 'prod',
+    }), {
+      pre: [new pipelines.ManualApprovalStep('ApproveProd')],
+    });
 
   }
 }
