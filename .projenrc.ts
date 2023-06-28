@@ -8,6 +8,7 @@ const project = new ServerlessProject({
     'projen',
     'cdk-serverless',
     'date-fns',
+    '@aws-sdk/client-sesv2',
   ],
 });
 

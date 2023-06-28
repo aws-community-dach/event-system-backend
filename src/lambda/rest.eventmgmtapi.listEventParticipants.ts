@@ -13,13 +13,13 @@ export const handler = api.createOpenApiHandler<operations['listEventParticipant
     throw new errors.NotFoundError();
   }
 
-  const participants = await Participant.find({eventId: id});
+  const participants = await Participant.find({ eventId: id });
 
   return participants.map(participant => ({
-    id: participant.eventId,
-    name: participant.name,
-    displayName: participant.displayName,
-    email: participant.email,
-    customData: participant.customData,
-  }))
+    id: participant.eventId!,
+    name: participant.name!,
+    displayName: participant.displayName!,
+    email: participant.email!,
+    customData: JSON.parse(participant.customData!),
+  }));
 });

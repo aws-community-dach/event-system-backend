@@ -36,6 +36,8 @@ export interface paths {
     };
   };
   "/events/{eventID}/participants/{participantID}": {
+    /** Returns a participant for a specific event */
+    get: operations["getEventParticipant"];
     /** Updates participant data */
     put: operations["updateEventParticipant"];
     /** Deregisters a participant from an event */
@@ -224,6 +226,23 @@ export interface operations {
     responses: {
       /** @description Registered the participant */
       201: never;
+    };
+  };
+  /** Returns a participant for a specific event */
+  getEventParticipant: {
+    parameters: {
+      query: {
+        /** @description unique token */
+        token?: string;
+      };
+      path: {
+        eventID: components["parameters"]["eventID"];
+        participantID: components["parameters"]["participantID"];
+      };
+    };
+    responses: {
+      /** @description Returns one participant for a specific event */
+      200: components["responses"]["Participant"];
     };
   };
   /** Updates participant data */

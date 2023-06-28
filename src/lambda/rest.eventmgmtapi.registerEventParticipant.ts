@@ -1,4 +1,7 @@
 import { api, errors } from 'cdk-serverless/lib/lambda';
+import { format } from 'date-fns';
+import { de } from 'date-fns/locale';
+import { DATE_FMT_SHORT, sendEmail } from './ses';
 import { Event, Index_GSI1_Name, Participant } from '../generated/datastore.event-model.generated';
 import { operations } from '../generated/rest.eventmgmtapi-model.generated';
 
@@ -14,7 +17,7 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['regis
 
   const participant = await Participant.create({
     eventId,
-    confirmed: false,
+    confirmed: true,
     email: data.email,
     name: data.name,
     displayName: data.displayName,
@@ -24,7 +27,11 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['regis
   });
   console.log(participant);
 
-  // TODO send email for confirmation
+  await sendEmail(data.email!, 'confirm-registration', {
+    event,
+    participant,
+    datePretty: format(event.date!, DATE_FMT_SHORT, { locale: de }),
+  });
 
   ctx.response.statusCode = 201;
   ctx.response.headers.Location = `/events/${eventId}/participants/${data.email}`;

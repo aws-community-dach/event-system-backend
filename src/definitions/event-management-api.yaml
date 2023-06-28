@@ -90,7 +90,15 @@ paths:
         schema: 
           type: string
         description: unique token
-    # How does a user update the data?
+    get:
+      tags:
+        - Events
+      summary: Returns a participant for a specific event
+      operationId: getEventParticipant
+      responses:
+        200: 
+          $ref: '#/components/responses/Participant'
+          description: Returns one participant for a specific event
     put:
       tags:
         - Events

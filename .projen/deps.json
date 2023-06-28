@@ -96,6 +96,10 @@
       "type": "runtime"
     },
     {
+      "name": "@aws-sdk/client-sesv2",
+      "type": "runtime"
+    },
+    {
       "name": "@aws-sdk/lib-dynamodb",
       "type": "runtime"
     },
