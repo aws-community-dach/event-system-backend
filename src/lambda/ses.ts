@@ -10,7 +10,7 @@ export async function sendEmail(to: string | string[], templateName: string, dat
   try {
     const templateData = {
       ...data,
-      websiteUrl: `https://${env.DOMAIN_NAME}`,
+      websiteUrl: `https://www.${env.DOMAIN_NAME}`,
     };
     await sesClient.send(new SendEmailCommand({
       Content: {
