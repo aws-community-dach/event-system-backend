@@ -6,7 +6,7 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['updat
   ctx.logger.info(JSON.stringify(ctx.event));
   ctx.logger.info(JSON.stringify(data));
 
-  const participantId = ctx.event.pathParameters!.participantID;
+  const participantId = decodeURIComponent(ctx.event.pathParameters!.participantID!); // id is an e-mail address and thus encoded
   const eventId = ctx.event.pathParameters!.eventID;
   const token = ctx.event.queryStringParameters!.token;
 

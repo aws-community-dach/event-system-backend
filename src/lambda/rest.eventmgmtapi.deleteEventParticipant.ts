@@ -4,7 +4,8 @@ import { operations } from '../generated/rest.eventmgmtapi-model.generated';
 
 export const handler = api.createOpenApiHandler<operations['deleteEventParticipant']>(async (ctx) => {
   ctx.logger.info(JSON.stringify(ctx.event));
-  const participantId = ctx.event.pathParameters!.participantID;
+
+  const participantId = decodeURIComponent(ctx.event.pathParameters!.participantID!); // id is an e-mail address and thus encoded
   const eventId = ctx.event.pathParameters!.eventID;
   const token = ctx.event.queryStringParameters!.token;
 
