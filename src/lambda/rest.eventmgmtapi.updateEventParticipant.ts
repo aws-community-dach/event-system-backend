@@ -14,15 +14,12 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['updat
   if (!participant || (token !== participant.token && !ctx.auth.isAdmin())) {
     throw new errors.NotFoundError();
   }
-  
+
   await Participant.update({
     eventId: eventId,
     email: participantId,
     name: data.name,
     displayName: data.displayName,
-    customData: JSON.stringify(data.customData)
-  })
-
-
-  ctx.response.statusCode = 200;
+    customData: JSON.stringify(data.customData),
+  });
 });

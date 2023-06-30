@@ -9,8 +9,8 @@ export const handler = api.createOpenApiHandler<operations['deleteEvent']>(async
   ctx.auth.assertAdmin();
 
   const id = ctx.event.pathParameters!.eventID;
-  const participants = await Participant.find({eventId: id})
-  if(participants.length > 0){
+  const participants = await Participant.find({ eventId: id });
+  if (participants.length > 0) {
     throw new errors.BadRequestError();
   }
   const event = await Event.get({ id });
