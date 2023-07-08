@@ -2854,7 +2854,7 @@ aws-cdk@^2.60.0:
   optionalDependencies:
     fsevents "2.3.2"
 
-axios@^1.3.6:
+axios@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.4.0.tgz#38a7bf1224cd308de271146038b551d725f0be1f"
   integrity sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==
@@ -3144,13 +3144,13 @@ case@1.6.3, case@^1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-cdk-serverless@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/cdk-serverless/-/cdk-serverless-2.1.0.tgz#97123867db1144de5425a16b48ffafb7a8866dc6"
-  integrity sha512-R7ADDv87Fs895tuhx2OZomDoMoKqLTC5ivv8QZT7+HGGevjU8ls7xcX+qkLgp+pGUvfAIdR9dqcoZXTDrsnt+Q==
+cdk-serverless@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/cdk-serverless/-/cdk-serverless-2.4.2.tgz#e1b88046cd9800df30c31f70d0c203c433254619"
+  integrity sha512-JLuOMDzQtiDljwXfsOSRgeHsYkDn+Ink4I2oiZffWj65Cchctuf6NpAam8Jm12WC/btSjq955gVifMUNRbZwwg==
   dependencies:
-    axios "^1.3.6"
-    date-fns "^2.29.3"
+    axios "^1.4.0"
+    date-fns "^2.30.0"
     js-yaml "^4.1.0"
     jsonwebtoken "^9.0.0"
     jwk-to-pem "^2.0.5"
@@ -3365,7 +3365,7 @@ crypto-random-string@^4.0.0:
   dependencies:
     type-fest "^1.0.1"
 
-date-fns@^2.29.3, date-fns@^2.30.0:
+date-fns@^2.30.0:
   version "2.30.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.30.0.tgz#f367e644839ff57894ec6ac480de40cae4b0f4d0"
   integrity sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==
