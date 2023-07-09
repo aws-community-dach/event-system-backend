@@ -92,6 +92,10 @@
       "type": "build"
     },
     {
+      "name": "@aws-cdk/aws-cognito-identitypool-alpha",
+      "type": "runtime"
+    },
+    {
       "name": "@aws-sdk/client-dynamodb",
       "type": "runtime"
     },

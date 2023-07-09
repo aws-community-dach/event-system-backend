@@ -9,6 +9,7 @@ const project = new ServerlessProject({
     'cdk-serverless',
     'date-fns',
     '@aws-sdk/client-sesv2',
+    '@aws-cdk/aws-cognito-identitypool-alpha',
   ],
 });
 
