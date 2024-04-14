@@ -10,7 +10,6 @@
 /.gitignore linguist-generated
 /.mergify.yml linguist-generated
 /.npmignore linguist-generated
-/.npmrc linguist-generated
 /.projen/** linguist-generated
 /.projen/deps.json linguist-generated
 /.projen/files.json linguist-generated
@@ -18,6 +17,9 @@
 /cdk.json linguist-generated
 /LICENSE linguist-generated
 /package.json linguist-generated
+/src/generated/datastore.event-construct.generated.ts linguist-generated
+/src/generated/datastore.event-model.generated.ts linguist-generated
+/src/generated/rest.eventmgmtapi-api.generated.ts linguist-generated
 /tsconfig.dev.json linguist-generated
 /tsconfig.json linguist-generated
 /yarn.lock linguist-generated

@@ -43,7 +43,7 @@ export interface paths {
     /** Deregisters a participant from an event */
     delete: operations["deleteEventParticipant"];
     parameters: {
-      query: {
+      query?: {
         /** @description unique token */
         token?: string;
       };
@@ -72,7 +72,7 @@ export interface components {
       organizerID?: string;
       summary?: string;
       description?: string;
-      agenda?: (components["schemas"]["Agenda"])[];
+      agenda?: components["schemas"]["Agenda"][];
     };
     BaseResponse: {
       id?: string;
@@ -147,6 +147,8 @@ export interface components {
   pathItems: never;
 }
 
+export type $defs = Record<string, never>;
+
 export type external = Record<string, never>;
 
 export interface operations {
@@ -200,7 +202,9 @@ export interface operations {
     };
     responses: {
       /** @description Deleted event */
-      204: never;
+      204: {
+        content: never;
+      };
     };
   };
   /** Returns all participants for a specific event */
@@ -225,13 +229,15 @@ export interface operations {
     requestBody: components["requestBodies"]["Participant"];
     responses: {
       /** @description Registered the participant */
-      201: never;
+      201: {
+        content: never;
+      };
     };
   };
   /** Returns a participant for a specific event */
   getEventParticipant: {
     parameters: {
-      query: {
+      query?: {
         /** @description unique token */
         token?: string;
       };
@@ -248,7 +254,7 @@ export interface operations {
   /** Updates participant data */
   updateEventParticipant: {
     parameters: {
-      query: {
+      query?: {
         /** @description unique token */
         token?: string;
       };
@@ -260,13 +266,15 @@ export interface operations {
     requestBody: components["requestBodies"]["Participant"];
     responses: {
       /** @description Updated participant data */
-      200: never;
+      200: {
+        content: never;
+      };
     };
   };
   /** Deregisters a participant from an event */
   deleteEventParticipant: {
     parameters: {
-      query: {
+      query?: {
         /** @description unique token */
         token?: string;
       };
@@ -277,7 +285,9 @@ export interface operations {
     };
     responses: {
       /** @description Deregistered particpant from event */
-      204: never;
+      204: {
+        content: never;
+      };
     };
   };
 }

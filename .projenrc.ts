@@ -1,9 +1,11 @@
 import { RestApi, ServerlessProject, Datastore } from 'cdk-serverless/lib/projen';
 
 const project = new ServerlessProject({
-  cdkVersion: '2.60.0',
+  cdkVersion: '2.137.0',
+  cdkVersionPinning: true,
   defaultReleaseBranch: 'main',
   name: 'event-system-backend',
+  constructsVersion: '10.3.0',
   deps: [
     'projen',
     'cdk-serverless',
@@ -22,5 +24,7 @@ new Datastore(project, {
   modelName: 'Event',
   definitionFile: './src/definitions/event-datamodel.json',
 });
+
+project.package.addPackageResolutions('constructs@10.3.0');
 
 project.synth();
