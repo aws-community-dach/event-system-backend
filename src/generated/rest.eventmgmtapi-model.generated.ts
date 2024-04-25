@@ -43,10 +43,6 @@ export interface paths {
     /** Deregisters a participant from an event */
     delete: operations["deleteEventParticipant"];
     parameters: {
-      query?: {
-        /** @description unique token */
-        token?: string;
-      };
       path: {
         eventID: components["parameters"]["eventID"];
         participantID: components["parameters"]["participantID"];
@@ -237,10 +233,6 @@ export interface operations {
   /** Returns a participant for a specific event */
   getEventParticipant: {
     parameters: {
-      query?: {
-        /** @description unique token */
-        token?: string;
-      };
       path: {
         eventID: components["parameters"]["eventID"];
         participantID: components["parameters"]["participantID"];
@@ -254,10 +246,6 @@ export interface operations {
   /** Updates participant data */
   updateEventParticipant: {
     parameters: {
-      query?: {
-        /** @description unique token */
-        token?: string;
-      };
       path: {
         eventID: components["parameters"]["eventID"];
         participantID: components["parameters"]["participantID"];
@@ -274,10 +262,6 @@ export interface operations {
   /** Deregisters a participant from an event */
   deleteEventParticipant: {
     parameters: {
-      query?: {
-        /** @description unique token */
-        token?: string;
-      };
       path: {
         eventID: components["parameters"]["eventID"];
         participantID: components["parameters"]["participantID"];
