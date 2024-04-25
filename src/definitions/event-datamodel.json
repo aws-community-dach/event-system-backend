@@ -56,7 +56,7 @@
       },
       "SK": {
         "type": "string",
-        "value": "PARTICIPANT#${email}"
+        "value": "PARTICIPANT#${token}"
       },
       "eventId": {
         "type": "string",
@@ -80,7 +80,8 @@
       },
       "email": {
         "type": "string",
-        "required": true
+        "required": true,
+        "unique": true
       },
       "customData": {
         "type": "string",

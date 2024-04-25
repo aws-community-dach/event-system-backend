@@ -25,8 +25,7 @@ paths:
       responses:
         201:
           $ref: '#/components/responses/Event'
-          description: Created a new event       
-    
+          description: Created a new event
   /events/{eventID}:
     parameters:
       - $ref: '#/components/parameters/eventID'
@@ -67,7 +66,7 @@ paths:
       summary: Returns all participants for a specific event
       operationId: listEventParticipants
       responses:
-        200: 
+        200:
           $ref: '#/components/responses/ListOfParticipants'
           description: Returns all participants for a specific event
     post:
@@ -80,23 +79,19 @@ paths:
       responses:
         201:
           description: Registered the participant
-      
+
   /events/{eventID}/participants/{participantID}:
     parameters:
       - $ref: '#/components/parameters/eventID'
       - $ref: '#/components/parameters/participantID'
-      - in: query
-        name: token
-        schema: 
-          type: string
-        description: unique token
+
     get:
       tags:
         - Events
       summary: Returns a participant for a specific event
       operationId: getEventParticipant
       responses:
-        200: 
+        200:
           $ref: '#/components/responses/Participant'
           description: Returns one participant for a specific event
     put:
@@ -139,8 +134,8 @@ components:
       in: path
       required: true
       schema:
-        type: string  
-      description: unique token 
+        type: string
+      description: unique token
 
   requestBodies:
     Participant:
@@ -161,7 +156,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/EventRegister'
-          
+
   responses:
     Participant:
       description: OK
@@ -259,4 +254,4 @@ components:
           type: string
         title:
           type: string
-        
+

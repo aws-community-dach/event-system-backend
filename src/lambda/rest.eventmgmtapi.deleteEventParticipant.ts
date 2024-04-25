@@ -5,14 +5,13 @@ import { operations } from '../generated/rest.eventmgmtapi-model.generated';
 export const handler = api.createOpenApiHandler<operations['deleteEventParticipant']>(async (ctx) => {
   ctx.logger.info(JSON.stringify(ctx.event));
 
-  const participantId = decodeURIComponent(ctx.event.pathParameters!.participantID!); // id is an e-mail address and thus encoded
   const eventId = ctx.event.pathParameters!.eventID;
   const token = ctx.event.queryStringParameters!.token;
 
-  const participant = await Participant.get({ eventId: eventId, email: participantId });
+  const participant = await Participant.get({ eventId: eventId, token: token });
   if (!participant || (token !== participant.token && !ctx.auth.isAdmin())) {
     throw new errors.NotFoundError();
   }
 
-  await Participant.remove({ eventId: eventId, email: participantId });
+  await Participant.remove({ eventId: eventId, token: token });
 });
