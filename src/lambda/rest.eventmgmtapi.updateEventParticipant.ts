@@ -6,20 +6,21 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['updat
   ctx.logger.info(JSON.stringify(ctx.event));
   ctx.logger.info(JSON.stringify(data));
 
-  const participantId = decodeURIComponent(ctx.event.pathParameters!.participantID!); // id is an e-mail address and thus encoded
   const eventId = ctx.event.pathParameters!.eventID;
   const token = ctx.event.queryStringParameters!.token;
 
-  const participant = await Participant.get({ eventId: eventId, email: participantId });
+  const participant = await Participant.get({ eventId: eventId, token: token });
   if (!participant || (token !== participant.token && !ctx.auth.isAdmin())) {
     throw new errors.NotFoundError();
   }
 
   await Participant.update({
     eventId: eventId,
-    email: participantId,
+    email: participant.email,
     name: data.name,
     displayName: data.displayName,
     customData: JSON.stringify(data.customData),
   });
+
+  return new Promise<never>(() => {return JSON.stringify({ status: 'ok' });});
 });
