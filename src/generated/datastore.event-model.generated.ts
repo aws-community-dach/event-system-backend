@@ -75,7 +75,7 @@ export const Schema = {
       },
       "SK": {
         "type": String,
-        "value": "PARTICIPANT#${email}"
+        "value": "PARTICIPANT#${token}"
       },
       "eventId": {
         "type": String,
@@ -99,7 +99,8 @@ export const Schema = {
       },
       "email": {
         "type": String,
-        "required": true
+        "required": true,
+        "unique": true
       },
       "customData": {
         "type": String,
