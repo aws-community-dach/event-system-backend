@@ -7,10 +7,10 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['updat
   ctx.logger.info(JSON.stringify(data));
 
   const eventId = ctx.event.pathParameters!.eventID;
-  const token = ctx.event.queryStringParameters!.token;
+  const participantId = ctx.event.pathParameters!.participantId;
 
-  const participant = await Participant.get({ eventId: eventId, token: token });
-  if (!participant || (token !== participant.token && !ctx.auth.isAdmin())) {
+  const participant = await Participant.get({ eventId: eventId, participantId: participantId });
+  if (!participant || (participantId !== participant.participantId && !ctx.auth.isAdmin())) {
     throw new errors.NotFoundError();
   }
 
@@ -22,5 +22,5 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['updat
     customData: JSON.stringify(data.customData),
   });
 
-  return new Promise<never>(() => {return JSON.stringify({ status: 'ok' });});
+  return new Promise<never>(() => {});
 });

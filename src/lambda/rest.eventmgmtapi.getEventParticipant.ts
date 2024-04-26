@@ -6,10 +6,10 @@ export const handler = api.createOpenApiHandler<operations['getEventParticipant'
   ctx.logger.info(JSON.stringify(ctx.event));
 
   const eventId = ctx.event.pathParameters!.eventID;
-  const token = ctx.event.queryStringParameters!.token;
+  const participantId = ctx.event.pathParameters!.participantId;
 
-  const participant = await Participant.get({ eventId: eventId, token: token });
-  if (!participant || (token !== participant.token && !ctx.auth.isAdmin())) {
+  const participant = await Participant.get({ eventId: eventId, participantId: participantId });
+  if (!participant || (participantId !== participant.participantId && !ctx.auth.isAdmin())) {
     throw new errors.NotFoundError();
   }
 

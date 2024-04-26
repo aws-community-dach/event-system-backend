@@ -56,7 +56,7 @@
       },
       "SK": {
         "type": "string",
-        "value": "PARTICIPANT#${token}"
+        "value": "PARTICIPANT#${participantId}"
       },
       "eventId": {
         "type": "string",
@@ -91,7 +91,7 @@
         "type": "boolean",
         "required": true
       },
-      "token": {
+      "participantId": {
         "type": "string",
         "generate": "uuid",
         "required": true

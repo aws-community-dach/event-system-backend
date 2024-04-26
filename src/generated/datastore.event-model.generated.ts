@@ -75,7 +75,7 @@ export const Schema = {
       },
       "SK": {
         "type": String,
-        "value": "PARTICIPANT#${token}"
+        "value": "PARTICIPANT#${participantId}"
       },
       "eventId": {
         "type": String,
@@ -110,7 +110,7 @@ export const Schema = {
         "type": Boolean,
         "required": true
       },
-      "token": {
+      "participantId": {
         "type": String,
         "generate": "uuid",
         "required": true
