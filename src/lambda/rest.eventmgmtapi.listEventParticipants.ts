@@ -7,7 +7,7 @@ export const handler = api.createOpenApiHandler<operations['listEventParticipant
 
   ctx.auth.assertAdmin();
 
-  const id = ctx.event.pathParameters!.eventID;
+  const id = ctx.event.pathParameters!.eventId;
   const event = await Event.get({ id: id });
   if (!event) {
     throw new errors.NotFoundError();
@@ -16,7 +16,7 @@ export const handler = api.createOpenApiHandler<operations['listEventParticipant
   const participants = await Participant.find({ eventId: id });
 
   return participants.map(participant => ({
-    id: participant.eventId!,
+    id: participant.participantId!,
     name: participant.name!,
     displayName: participant.displayName!,
     email: participant.email!,

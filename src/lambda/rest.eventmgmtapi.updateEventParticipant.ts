@@ -6,7 +6,7 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['updat
   ctx.logger.info(JSON.stringify(ctx.event));
   ctx.logger.info(JSON.stringify(data));
 
-  const eventId = ctx.event.pathParameters!.eventID;
+  const eventId = ctx.event.pathParameters!.eventId;
   const participantId = ctx.event.pathParameters!.participantId;
 
   const participant = await Participant.get({ eventId: eventId, participantId: participantId });

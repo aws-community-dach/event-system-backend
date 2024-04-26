@@ -9,7 +9,7 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['regis
   ctx.logger.info(JSON.stringify(ctx.event));
   ctx.logger.info(JSON.stringify(data));
 
-  const eventId = ctx.event.pathParameters!.eventID;
+  const eventId = ctx.event.pathParameters!.eventId;
   const event = await Event.get({ id: eventId }, { index: Index_GSI1_Name });
   if (!event) {
     throw new errors.NotFoundError();

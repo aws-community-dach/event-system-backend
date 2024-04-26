@@ -5,7 +5,7 @@ import { operations } from '../generated/rest.eventmgmtapi-model.generated';
 export const handler = api.createOpenApiHandler<operations['getEventParticipant']>(async (ctx) => {
   ctx.logger.info(JSON.stringify(ctx.event));
 
-  const eventId = ctx.event.pathParameters!.eventID;
+  const eventId = ctx.event.pathParameters!.eventId;
   const participantId = ctx.event.pathParameters!.participantId;
 
   const participant = await Participant.get({ eventId: eventId, participantId: participantId });
@@ -14,7 +14,7 @@ export const handler = api.createOpenApiHandler<operations['getEventParticipant'
   }
 
   return {
-    id: participant.eventId!,
+    id: participant.participantId!,
     name: participant.name!,
     displayName: participant.displayName!,
     email: participant.email!,

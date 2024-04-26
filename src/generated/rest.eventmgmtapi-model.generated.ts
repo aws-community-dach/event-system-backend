@@ -11,7 +11,7 @@ export interface paths {
     /** Creates a new event */
     post: operations["createEvent"];
   };
-  "/events/{eventID}": {
+  "/events/{eventId}": {
     /** Returns a specific event */
     get: operations["getEventDetails"];
     /** Updates an existing event */
@@ -20,22 +20,22 @@ export interface paths {
     delete: operations["deleteEvent"];
     parameters: {
       path: {
-        eventID: components["parameters"]["eventID"];
+        eventId: components["parameters"]["eventId"];
       };
     };
   };
-  "/events/{eventID}/participants": {
+  "/events/{eventId}/participants": {
     /** Returns all participants for a specific event */
     get: operations["listEventParticipants"];
     /** Registers a participant for an event */
     post: operations["registerEventParticipant"];
     parameters: {
       path: {
-        eventID: components["parameters"]["eventID"];
+        eventId: components["parameters"]["eventId"];
       };
     };
   };
-  "/events/{eventID}/participants/{participantID}": {
+  "/events/{eventId}/participants/{participantId}": {
     /** Returns a participant for a specific event */
     get: operations["getEventParticipant"];
     /** Updates participant data */
@@ -44,8 +44,8 @@ export interface paths {
     delete: operations["deleteEventParticipant"];
     parameters: {
       path: {
-        eventID: components["parameters"]["eventID"];
-        participantID: components["parameters"]["participantID"];
+        eventId: components["parameters"]["eventId"];
+        participantId: components["parameters"]["participantId"];
       };
     };
   };
@@ -116,9 +116,9 @@ export interface components {
   };
   parameters: {
     /** @description ID of the event */
-    eventID: string;
+    eventId: string;
     /** @description ID of the participant */
-    participantID: string;
+    participantId: string;
     /** @description unique token */
     token: string;
   };
@@ -168,7 +168,7 @@ export interface operations {
   getEventDetails: {
     parameters: {
       path: {
-        eventID: components["parameters"]["eventID"];
+        eventId: components["parameters"]["eventId"];
       };
     };
     responses: {
@@ -180,7 +180,7 @@ export interface operations {
   updateEvent: {
     parameters: {
       path: {
-        eventID: components["parameters"]["eventID"];
+        eventId: components["parameters"]["eventId"];
       };
     };
     requestBody: components["requestBodies"]["Event"];
@@ -193,7 +193,7 @@ export interface operations {
   deleteEvent: {
     parameters: {
       path: {
-        eventID: components["parameters"]["eventID"];
+        eventId: components["parameters"]["eventId"];
       };
     };
     responses: {
@@ -207,7 +207,7 @@ export interface operations {
   listEventParticipants: {
     parameters: {
       path: {
-        eventID: components["parameters"]["eventID"];
+        eventId: components["parameters"]["eventId"];
       };
     };
     responses: {
@@ -219,7 +219,7 @@ export interface operations {
   registerEventParticipant: {
     parameters: {
       path: {
-        eventID: components["parameters"]["eventID"];
+        eventId: components["parameters"]["eventId"];
       };
     };
     requestBody: components["requestBodies"]["Participant"];
@@ -234,8 +234,8 @@ export interface operations {
   getEventParticipant: {
     parameters: {
       path: {
-        eventID: components["parameters"]["eventID"];
-        participantID: components["parameters"]["participantID"];
+        eventId: components["parameters"]["eventId"];
+        participantId: components["parameters"]["participantId"];
       };
     };
     responses: {
@@ -247,8 +247,8 @@ export interface operations {
   updateEventParticipant: {
     parameters: {
       path: {
-        eventID: components["parameters"]["eventID"];
-        participantID: components["parameters"]["participantID"];
+        eventId: components["parameters"]["eventId"];
+        participantId: components["parameters"]["participantId"];
       };
     };
     requestBody: components["requestBodies"]["Participant"];
@@ -263,8 +263,8 @@ export interface operations {
   deleteEventParticipant: {
     parameters: {
       path: {
-        eventID: components["parameters"]["eventID"];
-        participantID: components["parameters"]["participantID"];
+        eventId: components["parameters"]["eventId"];
+        participantId: components["parameters"]["participantId"];
       };
     };
     responses: {
