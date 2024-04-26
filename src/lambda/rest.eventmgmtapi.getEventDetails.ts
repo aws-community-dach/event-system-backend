@@ -3,7 +3,7 @@ import { Event, Index_GSI1_Name } from '../generated/datastore.event-model.gener
 import { operations } from '../generated/rest.eventmgmtapi-model.generated';
 
 export const handler = api.createOpenApiHandler<operations['getEventDetails']>(async (ctx) => {
-  const id = ctx.event.pathParameters!.eventID;
+  const id = ctx.event.pathParameters!.eventId;
   const event = await Event.get({ id }, { index: Index_GSI1_Name });
   if (!event) {
     throw new errors.NotFoundError();

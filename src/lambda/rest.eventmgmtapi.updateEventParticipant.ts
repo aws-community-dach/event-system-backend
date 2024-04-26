@@ -6,8 +6,8 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['updat
   ctx.logger.info(JSON.stringify(ctx.event));
   ctx.logger.info(JSON.stringify(data));
 
-  const eventId = ctx.event.pathParameters!.eventID;
-  const participantId = ctx.event.pathParameters!.participantID;
+  const eventId = ctx.event.pathParameters!.eventId;
+  const participantId = ctx.event.pathParameters!.participantId;
 
   const participant = await Participant.get({ eventId: eventId, participantId: participantId });
   if (!participant || (participantId !== participant.participantId && !ctx.auth.isAdmin())) {

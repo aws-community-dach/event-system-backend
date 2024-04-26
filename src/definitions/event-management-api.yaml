@@ -26,9 +26,9 @@ paths:
         201:
           $ref: '#/components/responses/Event'
           description: Created a new event
-  /events/{eventID}:
+  /events/{eventId}:
     parameters:
-      - $ref: '#/components/parameters/eventID'
+      - $ref: '#/components/parameters/eventId'
     get:
       tags:
         - Events
@@ -57,9 +57,9 @@ paths:
       responses:
         204:
           description: Deleted event
-  /events/{eventID}/participants:
+  /events/{eventId}/participants:
     parameters:
-        - $ref: '#/components/parameters/eventID'
+        - $ref: '#/components/parameters/eventId'
     get:
       tags:
         - Events
@@ -80,10 +80,10 @@ paths:
         201:
           description: Registered the participant
 
-  /events/{eventID}/participants/{participantID}:
+  /events/{eventId}/participants/{participantId}:
     parameters:
-      - $ref: '#/components/parameters/eventID'
-      - $ref: '#/components/parameters/participantID'
+      - $ref: '#/components/parameters/eventId'
+      - $ref: '#/components/parameters/participantId'
 
     get:
       tags:
@@ -115,15 +115,15 @@ paths:
 
 components:
   parameters:
-    eventID:
-      name: eventID
+    eventId:
+      name: eventId
       in: path
       required: true
       schema:
         type: string
       description: ID of the event
-    participantID:
-      name: participantID
+    participantId:
+      name: participantId
       in: path
       required: true
       schema:
