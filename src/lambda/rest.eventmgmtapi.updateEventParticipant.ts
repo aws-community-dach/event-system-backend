@@ -14,13 +14,13 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['updat
     throw new errors.NotFoundError();
   }
 
-  await Participant.update({
+  return await Participant.update({
     eventId: eventId,
+    participantId: participantId,
     email: participant.email,
     name: data.name,
     displayName: data.displayName,
     customData: JSON.stringify(data.customData),
   });
 
-  return new Promise<never>(() => {});
 });
