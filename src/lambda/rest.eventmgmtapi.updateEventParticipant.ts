@@ -14,7 +14,7 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['updat
     throw new errors.NotFoundError();
   }
 
-  return await Participant.update({
+  return Participant.update({
     eventId: eventId,
     participantId: participantId,
     email: participant.email,
