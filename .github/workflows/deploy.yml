@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - run: export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+      - run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
       - run: npx projen install:ci
       - run: npx projen build
       - uses: actions/upload-artifact@v4
@@ -52,7 +52,7 @@ jobs:
         with:
           name: cloud-assembly
           path: cdk.out/
-      - run: export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+      - run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
       - run: npx projen install:ci
       - run: npx projen publish:assets
       - run: npx projen bump
@@ -79,7 +79,7 @@ jobs:
         with:
           name: cloud-assembly
           path: cdk.out/
-      - run: export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+      - run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
       - run: npx projen install:ci
       - run: npx projen deploy:dev
       - uses: actions/upload-artifact@v3

@@ -26,7 +26,7 @@ jobs:
           role-to-assume: arn:aws:iam::002630180209:role/GitHub-event-system
           role-session-name: GitHubAction
           aws-region: eu-central-1
-      - run: export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+      - run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
       - run: npx projen install:ci
       - run: yarn add @aws-community-dach-assembly/event-system-backend@${{github.event.inputs.version}}
       - run: mv ./node_modules/@aws-community-dach-assembly/event-system-backend cdk.out
