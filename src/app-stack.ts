@@ -2,14 +2,13 @@ import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
+import { PipelineAppStackProps } from './app';
 import { EventDatastore } from './generated/datastore.event-construct.generated';
 import { EventMgmtApiRestApi } from './generated/rest.eventmgmtapi-api.generated';
 
 
-export interface ApplicationStackProps extends cdk.StackProps {
-  readonly stage: string;
+export interface ApplicationStackProps extends PipelineAppStackProps {
   readonly domainName: string;
-  readonly zone: cdk.aws_route53.IHostedZone;
 }
 
 export class ApplicationStack extends cdk.Stack {
@@ -19,7 +18,7 @@ export class ApplicationStack extends cdk.Stack {
     const singleTableDatastore = new EventDatastore(this, 'EventData', {});
 
     const api = new EventMgmtApiRestApi(this, 'Api', {
-      stageName: props.stage,
+      stageName: props.stageName,
       domainName: props.domainName,
       apiHostname: 'api',
       singleTableDatastore,
@@ -42,8 +41,8 @@ export class ApplicationStack extends cdk.Stack {
 
     new cdk.aws_ses.CfnTemplate(this, `SesTemplate${name}`, {
       template: {
-        templateName: `${this.props.stage}-${name}`,
-        subjectPart: (this.props.stage !== 'prod' ? '[TESTSYSTEM]' : '') + subject,
+        templateName: `${this.props.stageName}-${name}`,
+        subjectPart: (this.props.stageName !== 'prod' ? '[TESTSYSTEM]' : '') + subject,
         htmlPart,
       },
     });

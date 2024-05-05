@@ -52,4 +52,9 @@ junit.xml
 !/src/generated/rest.eventmgmtapi-api.generated.ts
 !/src/generated/datastore.event-model.generated.ts
 !/src/generated/datastore.event-construct.generated.ts
+!/.npmrc
+/cdk-outputs-*.json
+!/src/app.ts
+!/.github/workflows/deploy.yml
+!/.github/workflows/release-prod.yml
 !/.projenrc.ts

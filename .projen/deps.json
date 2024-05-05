@@ -22,6 +22,10 @@
       "type": "build"
     },
     {
+      "name": "@types/standard-version",
+      "type": "build"
+    },
+    {
       "name": "@types/uuid",
       "type": "build"
     },
@@ -38,6 +42,10 @@
     {
       "name": "aws-cdk",
       "version": "2.137.0",
+      "type": "build"
+    },
+    {
+      "name": "cdk-assets",
       "type": "build"
     },
     {
@@ -71,6 +79,10 @@
       "type": "build"
     },
     {
+      "name": "standard-version",
+      "type": "build"
+    },
+    {
       "name": "ts-jest",
       "type": "build"
     },
@@ -85,6 +97,11 @@
     {
       "name": "constructs",
       "version": "10.3.0",
+      "type": "override"
+    },
+    {
+      "name": "projen",
+      "version": "0.81.4",
       "type": "override"
     },
     {
@@ -139,6 +156,10 @@
     },
     {
       "name": "projen",
+      "type": "runtime"
+    },
+    {
+      "name": "projen-pipelines",
       "type": "runtime"
     },
     {

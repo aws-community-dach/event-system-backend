@@ -2,6 +2,8 @@ import * as cdk from 'aws-cdk-lib';
 import { CfnOutput, Fn } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
+// CURRENTLY NOT DEPLOYED AUTOMATICALLY
+
 export interface BaseStackProps extends cdk.StackProps {
   readonly stage: string;
   readonly domainName: string;

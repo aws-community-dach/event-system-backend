@@ -24,6 +24,18 @@
         }
       ]
     },
+    "bump": {
+      "name": "bump",
+      "description": "Bumps version based on latest git tag",
+      "steps": [
+        {
+          "exec": "pipelines-release bump"
+        },
+        {
+          "exec": "git push --tags"
+        }
+      ]
+    },
     "bundle": {
       "name": "bundle",
       "description": "Prepare assets"
@@ -76,32 +88,35 @@
         }
       ]
     },
-    "deploy": {
-      "name": "deploy",
-      "description": "Deploys your CDK app to the AWS cloud",
+    "deploy:dev": {
+      "name": "deploy:dev",
       "steps": [
         {
-          "exec": "cdk deploy",
-          "receiveArgs": true
+          "exec": "cdk --app cdk.out --outputs-file cdk-outputs-dev.json --progress events --require-approval never deploy event-system-backend-dev"
         }
       ]
     },
-    "destroy": {
-      "name": "destroy",
-      "description": "Destroys your cdk app in the AWS cloud",
+    "deploy:prod": {
+      "name": "deploy:prod",
       "steps": [
         {
-          "exec": "cdk destroy",
-          "receiveArgs": true
+          "exec": "cdk --app cdk.out --outputs-file cdk-outputs-prod.json --progress events --require-approval never deploy event-system-backend-prod"
         }
       ]
     },
-    "diff": {
-      "name": "diff",
-      "description": "Diffs the currently deployed app against your code",
+    "diff:dev": {
+      "name": "diff:dev",
       "steps": [
         {
-          "exec": "cdk diff"
+          "exec": "cdk --app cdk.out diff event-system-backend-dev"
+        }
+      ]
+    },
+    "diff:prod": {
+      "name": "diff:prod",
+      "steps": [
+        {
+          "exec": "cdk --app cdk.out diff event-system-backend-prod"
         }
       ]
     },
@@ -175,10 +190,40 @@
       "name": "pre-compile",
       "description": "Prepare the project for compilation"
     },
+    "publish:assets": {
+      "name": "publish:assets",
+      "steps": [
+        {
+          "exec": "npx cdk-assets -p cdk.out/event-system-backend-dev.assets.json publish"
+        },
+        {
+          "exec": "npx cdk-assets -p cdk.out/event-system-backend-prod.assets.json publish"
+        }
+      ]
+    },
+    "release:push-assembly": {
+      "name": "release:push-assembly",
+      "steps": [
+        {
+          "exec": "pipelines-release create-manifest \"cdk.out\"  \"@aws-community-dach-assembly\""
+        },
+        {
+          "cwd": "cdk.out",
+          "exec": "npm version --no-git-tag-version from-git"
+        },
+        {
+          "cwd": "cdk.out",
+          "exec": "npm publish"
+        }
+      ]
+    },
     "synth": {
       "name": "synth",
       "description": "Synthesizes your cdk app into cdk.out",
       "steps": [
+        {
+          "exec": "rm -rf cdk.out"
+        },
         {
           "exec": "cdk synth"
         }
@@ -188,6 +233,9 @@
       "name": "synth:silent",
       "description": "Synthesizes your cdk app into cdk.out and suppresses the template in stdout (part of \"yarn build\")",
       "steps": [
+        {
+          "exec": "rm -rf cdk.out"
+        },
         {
           "exec": "cdk synth -q"
         }
@@ -223,31 +271,19 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/aws-lambda,@types/jest,@types/js-yaml,@types/lambda-log,@types/uuid,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jest,projen,ts-jest,ts-node,typescript,@aws-cdk/aws-cognito-identitypool-alpha,@aws-sdk/client-dynamodb,@aws-sdk/client-sesv2,@aws-sdk/lib-dynamodb,cdk-serverless,date-fns,dynamodb-onetable,js-yaml,openapi-typescript,uuid"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/aws-lambda,@types/jest,@types/js-yaml,@types/lambda-log,@types/standard-version,@types/uuid,cdk-assets,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jest,projen,standard-version,ts-jest,ts-node,typescript,@aws-cdk/aws-cognito-identitypool-alpha,@aws-sdk/client-dynamodb,@aws-sdk/client-sesv2,@aws-sdk/lib-dynamodb,cdk-serverless,date-fns,dynamodb-onetable,js-yaml,openapi-typescript,projen-pipelines,uuid"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @types/aws-lambda @types/jest @types/js-yaml @types/lambda-log @types/node @types/uuid @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit projen ts-jest ts-node typescript @aws-cdk/aws-cognito-identitypool-alpha @aws-sdk/client-dynamodb @aws-sdk/client-sesv2 @aws-sdk/lib-dynamodb aws-cdk-lib cdk-serverless constructs date-fns dynamodb-onetable js-yaml openapi-typescript uuid"
+          "exec": "yarn upgrade @types/aws-lambda @types/jest @types/js-yaml @types/lambda-log @types/node @types/standard-version @types/uuid @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk cdk-assets esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit projen standard-version ts-jest ts-node typescript @aws-cdk/aws-cognito-identitypool-alpha @aws-sdk/client-dynamodb @aws-sdk/client-sesv2 @aws-sdk/lib-dynamodb aws-cdk-lib cdk-serverless constructs date-fns dynamodb-onetable js-yaml openapi-typescript projen-pipelines uuid"
         },
         {
           "exec": "npx projen"
         },
         {
           "spawn": "post-upgrade"
-        }
-      ]
-    },
-    "watch": {
-      "name": "watch",
-      "description": "Watches changes in your source code and rebuilds and deploys to the current account",
-      "steps": [
-        {
-          "exec": "cdk deploy --hotswap"
-        },
-        {
-          "exec": "cdk watch"
         }
       ]
     }
