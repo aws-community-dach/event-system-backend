@@ -39,6 +39,7 @@ new GithubCDKPipeline(project, {
     default: 'arn:aws:iam::002630180209:role/GitHub-event-system',
   },
   pkgNamespace: '@aws-community-dach-assembly',
+  preInstallCommands: ['export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}'],
   stages: [{
     env: {
       account: '574436697058',
