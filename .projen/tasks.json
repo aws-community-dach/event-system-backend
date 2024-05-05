@@ -205,7 +205,7 @@
       "name": "release:push-assembly",
       "steps": [
         {
-          "exec": "pipelines-release create-manifest \"cdk.out\"  \"@aws-community-dach-assembly\""
+          "exec": "pipelines-release create-manifest \"cdk.out\"  \"@aws-community-dach\""
         },
         {
           "cwd": "cdk.out",

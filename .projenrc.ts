@@ -30,16 +30,16 @@ new Datastore(project, {
 project.package.addPackageResolutions('constructs@10.3.0');
 project.package.addPackageResolutions('projen@0.81.4');
 
-project.npmrc.addRegistry('https://npm.pkg.github.com', '@aws-community-dach-assembly');
-project.npmrc.addConfig('//npm.pkg.github.com/:_authToken', '${GITHUB_TOKEN}');
-project.npmrc.addConfig('//npm.pkg.github.com/:always-auth', 'true');
+// project.npmrc.addRegistry('https://npm.pkg.github.com', '@aws-community-dach');
+// project.npmrc.addConfig('//npm.pkg.github.com/:_authToken', '${GITHUB_TOKEN}');
+// project.npmrc.addConfig('//npm.pkg.github.com/:always-auth', 'true');
 
 new GithubCDKPipeline(project, {
   iamRoleArns: {
     default: 'arn:aws:iam::002630180209:role/GitHub-event-system',
   },
-  pkgNamespace: '@aws-community-dach-assembly',
-  preInstallCommands: ['echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV'],
+  pkgNamespace: '@aws-community-dach',
+  // preInstallCommands: ['echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV'],
   stages: [{
     env: {
       account: '574436697058',
@@ -52,7 +52,7 @@ new GithubCDKPipeline(project, {
       region: 'eu-central-1',
     },
     name: 'prod',
-    manualApproval: true,
+    // manualApproval: true, TODO fix package registry
   }],
 });
 
