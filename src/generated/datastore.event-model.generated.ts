@@ -100,7 +100,8 @@ export const Schema = {
       "email": {
         "type": String,
         "required": true,
-        "unique": true
+        "unique": true,
+        "scope": "${eventId}"
       },
       "customData": {
         "type": String,

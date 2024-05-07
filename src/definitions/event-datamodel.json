@@ -81,7 +81,8 @@
       "email": {
         "type": "string",
         "required": true,
-        "unique": true
+        "unique": true,
+        "scope": "${eventId}"
       },
       "customData": {
         "type": "string",
