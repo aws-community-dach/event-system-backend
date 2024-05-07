@@ -225,9 +225,7 @@ export interface operations {
     requestBody: components["requestBodies"]["Participant"];
     responses: {
       /** @description Registered the participant */
-      201: {
-        content: never;
-      };
+      201: components["requestBodies"]["Participant"];
     };
   };
   /** Returns a participant for a specific event */

@@ -34,5 +34,13 @@ export const handler = api.createOpenApiHandlerWithRequestBody<operations['regis
   });
 
   ctx.response.statusCode = 201;
-  ctx.response.headers.Location = `/events/${eventId}/participants/${data.email}`;
+  ctx.response.headers.Location = `/events/${eventId}/participants/${participant.participantId}`;
+
+  return {
+    id: participant.participantId!,
+    name: participant.name!,
+    displayName: participant.displayName!,
+    email: participant.email!,
+    customData: JSON.parse(participant.customData!),
+  };
 });

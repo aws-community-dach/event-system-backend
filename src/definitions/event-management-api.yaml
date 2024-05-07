@@ -78,6 +78,7 @@ paths:
         $ref: '#/components/requestBodies/Participant'
       responses:
         201:
+          $ref: '#/components/requestBodies/Participant'
           description: Registered the participant
 
   /events/{eventId}/participants/{participantId}:
