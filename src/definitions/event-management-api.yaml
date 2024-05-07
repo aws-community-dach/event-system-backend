@@ -84,6 +84,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/eventId'
       - $ref: '#/components/parameters/participantId'
+      # TODO query parameter with email address for unauthed users
 
     get:
       tags:

@@ -9,7 +9,7 @@ export const handler = api.createOpenApiHandler<operations['getEventParticipant'
   const participantId = ctx.event.pathParameters!.participantId;
 
   const participant = await Participant.get({ eventId: eventId, participantId: participantId });
-  if (!participant || (participantId !== participant.participantId && !ctx.auth.isAdmin())) {
+  if (!participant || (participantId !== participant.participantId && !ctx.auth.isAdmin())) { // TODO also check for email as query param for users
     throw new errors.NotFoundError();
   }
 
