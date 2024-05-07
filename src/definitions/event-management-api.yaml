@@ -103,6 +103,7 @@ paths:
         $ref: '#/components/requestBodies/Participant'
       responses:
         200:
+          $ref: '#/components/requestBodies/Participant'
           description: Updated participant data
     delete:
       tags:

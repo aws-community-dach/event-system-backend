@@ -254,9 +254,7 @@ export interface operations {
     requestBody: components["requestBodies"]["Participant"];
     responses: {
       /** @description Updated participant data */
-      200: {
-        content: never;
-      };
+      200: components["requestBodies"]["Participant"];
     };
   };
   /** Deregisters a participant from an event */
