@@ -15,7 +15,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
-      packages: write
+      packages: read
     env:
       CI: "true"
     steps:

@@ -5955,10 +5955,10 @@ process-nextick-args@~2.0.0:
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
 
-projen-pipelines@^0.0.58:
-  version "0.0.58"
-  resolved "https://registry.yarnpkg.com/projen-pipelines/-/projen-pipelines-0.0.58.tgz#6c2e089efa8fa1e02c8ad86df4cf2b151b025e1d"
-  integrity sha512-EQxXSNcnOirr+DiCdtFhmeFxjj4RJ5aKO1CAsvFfzimR35F+VOjnCU5l5wwdoGks4LaDjl1BEwFERr72YJ+U7w==
+projen-pipelines@^0.0.60:
+  version "0.0.60"
+  resolved "https://registry.yarnpkg.com/projen-pipelines/-/projen-pipelines-0.0.60.tgz#7e80db0abc501681e0879f14f607b08f217cd745"
+  integrity sha512-X+YVVPzGxlsEbsOgOOwfTYad1HUSf1wQHaSM87J29cFDFjzcwDcEKk/pc9uKl2Tle4m1Tk712D0q2A+bNWoG1Q==
   dependencies:
     projen "0.81.4"
     standard-version "^9.5.0"

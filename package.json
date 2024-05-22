@@ -65,7 +65,7 @@
     "js-yaml": "^4.1.0",
     "openapi-typescript": "^6.7.5",
     "projen": "0.81.4",
-    "projen-pipelines": "^0.0.58",
+    "projen-pipelines": "^0.0.60",
     "uuid": "^9.0.0"
   },
   "resolutions": {
