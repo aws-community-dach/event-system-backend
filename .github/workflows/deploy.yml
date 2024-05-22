@@ -19,6 +19,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
       - run: npx projen install:ci
       - run: npx projen build
       - uses: actions/upload-artifact@v4
@@ -31,7 +32,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: read
+      contents: write
+      packages: write
     env:
       CI: "true"
     steps:
@@ -51,8 +53,11 @@ jobs:
         with:
           name: cloud-assembly
           path: cdk.out/
+      - run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
       - run: npx projen install:ci
       - run: npx projen publish:assets
+      - run: npx projen bump
+      - run: npx projen release:push-assembly
   deploy-dev:
     name: Deploy stage dev to AWS
     needs: assetUpload
@@ -75,39 +80,10 @@ jobs:
         with:
           name: cloud-assembly
           path: cdk.out/
+      - run: echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
       - run: npx projen install:ci
       - run: npx projen deploy:dev
       - uses: actions/upload-artifact@v3
         with:
           name: cdk-outputs-dev
           path: cdk-outputs-dev.json
-  deploy-prod:
-    name: Deploy stage prod to AWS
-    needs:
-      - assetUpload
-      - deploy-dev
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-    env:
-      CI: "true"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: AWS Credentials
-        uses: aws-actions/configure-aws-credentials@master
-        with:
-          role-to-assume: arn:aws:iam::002630180209:role/GitHub-event-system
-          role-session-name: GitHubAction
-          aws-region: eu-central-1
-      - uses: actions/download-artifact@v4
-        with:
-          name: cloud-assembly
-          path: cdk.out/
-      - run: npx projen install:ci
-      - run: npx projen deploy:prod
-      - uses: actions/upload-artifact@v3
-        with:
-          name: cdk-outputs-prod
-          path: cdk-outputs-prod.json
