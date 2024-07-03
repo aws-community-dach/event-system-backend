@@ -38,14 +38,14 @@
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
     "aws-cdk": "2.137.0",
-    "cdk-assets": "^2.140.0",
+    "cdk-assets": "^2.147.3",
     "esbuild": "^0.20.2",
     "eslint": "^8",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
     "jest": "^29.7.0",
     "jest-junit": "^15",
-    "projen": "0.81.4",
+    "projen": "0.81.17",
     "standard-version": "^9.5.0",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
@@ -65,20 +65,24 @@
     "esbuild": "^0.20.2",
     "js-yaml": "^4.1.0",
     "openapi-typescript": "^6.7.5",
-    "projen": "0.81.4",
-    "projen-pipelines": "^0.0.60",
+    "projen": "0.81.17",
+    "projen-pipelines": "^0.0.64",
     "uuid": "^9.0.0"
   },
-  "resolutions": {
-    "constructs": "10.3.0",
-    "projen": "0.81.4"
+  "overrides": {
+    "@aws-cdk/aws-cognito-identitypool-alpha": "2.137.0-alpha.0",
+    "constructs": "^10.3.0",
+    "projen": "0.81.17"
   },
   "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.0.0",
   "jest": {
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.ts?(x)",
-      "<rootDir>/(test|src)/**/*(*.)@(spec|test).ts?(x)"
+      "<rootDir>/@(test|src)/**/*(*.)@(spec|test).ts?(x)"
     ],
     "clearMocks": true,
     "collectCoverage": true,

@@ -156,7 +156,7 @@
       "description": "Install project dependencies and update lockfile (non-frozen)",
       "steps": [
         {
-          "exec": "yarn install --check-files"
+          "exec": "npm install"
         }
       ]
     },
@@ -165,7 +165,7 @@
       "description": "Install project dependencies using frozen lockfile",
       "steps": [
         {
-          "exec": "yarn install --check-files --frozen-lockfile"
+          "exec": "npm ci"
         }
       ]
     },
@@ -274,10 +274,10 @@
           "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/aws-lambda,@types/jest,@types/js-yaml,@types/lambda-log,@types/standard-version,@types/uuid,cdk-assets,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jest,projen,standard-version,ts-jest,ts-node,typescript,@aws-sdk/client-dynamodb,@aws-sdk/client-s3,@aws-sdk/client-sesv2,@aws-sdk/lib-dynamodb,cdk-serverless,date-fns,dynamodb-onetable,js-yaml,openapi-typescript,projen-pipelines,uuid"
         },
         {
-          "exec": "yarn install --check-files"
+          "exec": "npm install"
         },
         {
-          "exec": "yarn upgrade @types/aws-lambda @types/jest @types/js-yaml @types/lambda-log @types/node @types/standard-version @types/uuid @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk cdk-assets esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit projen standard-version ts-jest ts-node typescript @aws-cdk/aws-cognito-identitypool-alpha @aws-sdk/client-dynamodb @aws-sdk/client-s3 @aws-sdk/client-sesv2 @aws-sdk/lib-dynamodb aws-cdk-lib cdk-serverless constructs date-fns dynamodb-onetable js-yaml openapi-typescript projen-pipelines uuid"
+          "exec": "npm update @types/aws-lambda @types/jest @types/js-yaml @types/lambda-log @types/node @types/standard-version @types/uuid @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk cdk-assets esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit projen standard-version ts-jest ts-node typescript @aws-cdk/aws-cognito-identitypool-alpha @aws-sdk/client-dynamodb @aws-sdk/client-s3 @aws-sdk/client-sesv2 @aws-sdk/lib-dynamodb aws-cdk-lib cdk-serverless constructs date-fns dynamodb-onetable js-yaml openapi-typescript projen-pipelines uuid"
         },
         {
           "exec": "npx projen"

@@ -95,13 +95,18 @@
       "type": "build"
     },
     {
+      "name": "@aws-cdk/aws-cognito-identitypool-alpha",
+      "version": "2.137.0-alpha.0",
+      "type": "override"
+    },
+    {
       "name": "constructs",
-      "version": "10.3.0",
+      "version": "^10.3.0",
       "type": "override"
     },
     {
       "name": "projen",
-      "version": "0.81.4",
+      "version": "0.81.17",
       "type": "override"
     },
     {

@@ -1,4 +1,5 @@
 import { RestApi, ServerlessProject, Datastore } from 'cdk-serverless/lib/projen';
+import { NodePackageManager } from 'projen/lib/javascript';
 import { GithubCDKPipeline } from 'projen-pipelines';
 
 const project = new ServerlessProject({
@@ -6,6 +7,7 @@ const project = new ServerlessProject({
   cdkVersionPinning: true,
   defaultReleaseBranch: 'main',
   name: 'event-system-backend',
+  packageManager: NodePackageManager.NPM,
   constructsVersion: '10.3.0',
   deps: [
     'projen',
@@ -27,8 +29,9 @@ new Datastore(project, {
   definitionFile: './src/definitions/event-datamodel.json',
 });
 
-project.package.addPackageResolutions('constructs@10.3.0');
-project.package.addPackageResolutions('projen@0.81.4');
+project.package.addPackageResolutions('constructs@^10.3.0');
+project.package.addPackageResolutions('projen@0.81.17');
+project.package.addPackageResolutions('@aws-cdk/aws-cognito-identitypool-alpha@2.137.0-alpha.0');
 
 new GithubCDKPipeline(project, {
   iamRoleArns: {
