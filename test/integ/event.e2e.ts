@@ -1,12 +1,15 @@
-import { IntegTestUtil, parseCfnOutputs } from 'cdk-serverless/lib/tests';
-import * as outputs from '../../cdk-outputs-dev.json';
+import { IntegTestUtil } from 'cdk-serverless/lib/tests';
 // import { Event, Index_GSI1_Name } from '../../src/generated/datastore.event-model.generated';
 
-const integUtil = new IntegTestUtil(parseCfnOutputs(outputs, 'Dev-App', {
+const integUtil = new IntegTestUtil({
   region: 'eu-central-1',
-  apiName: 'EventMgmtApi',
-  datastoreName: 'Event',
-}));
+  apiOptions: {
+    baseURL: 'https://api.events-test.aws-community.de',
+  },
+  datastoreOptions: {
+    tableName: 'Dev-App-EventData1BF73A70-WL8SVRQO2555',
+  },
+});
 
 test('get event details for existing event', async () => {
   const event = await integUtil.getClient().get('/events/01H0XNCXEB0DBFGZXK9GQPBRZZ');
