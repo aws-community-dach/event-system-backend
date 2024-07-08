@@ -55,6 +55,14 @@ export class ApplicationStack extends cdk.Stack {
     api.getFunctionForOperation('registerEventParticipant').grantSendEmails();
 
     this.createSesTemplate('confirm-registration', 'AWS Community DACH - Event registration');
+
+    const cognitoClientWebsite = authentication.userpool.addClient('UserPoolClientWebsite', {
+      authFlows: {
+        userPassword: true,
+        userSrp: true,
+      },
+    });
+    new cdk.CfnOutput(this, 'UserPoolClientWebsiteId', { value: cognitoClientWebsite.userPoolClientId });
   }
 
   private createSesTemplate(name: string, subject: string) {
