@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import * as cdk from 'aws-cdk-lib';
+import { CognitoAuthentication } from 'cdk-serverless/lib/constructs';
 import { Construct } from 'constructs';
 import { PipelineAppStackProps } from './app';
 import { EventDatastore } from './generated/datastore.event-construct.generated';
@@ -17,11 +18,34 @@ export class ApplicationStack extends cdk.Stack {
 
     const singleTableDatastore = new EventDatastore(this, 'EventData', {});
 
+    const authentication = new CognitoAuthentication(this, 'CognitoAuth', {
+      userPoolName: `EventMgmtUserPool-${props.stageName}`,
+      groups: { admin: 'Admins' },
+      triggers: {
+        customMessages: true,
+        preTokenGeneration: true,
+      },
+      sesEmailSender: {
+        email: 'info@aws-community.de',
+        name: 'AWS Community DACH',
+        region: 'eu-central-1',
+      },
+      userPoolProps: {
+        autoVerify: {
+          email: false,
+          phone: false,
+        },
+        selfSignUpEnabled: true,
+      },
+    });
+    authentication.preTokenGenerationFunction!.setTable(singleTableDatastore.table);
+
     const api = new EventMgmtApiRestApi(this, 'Api', {
       stageName: props.stageName,
       domainName: props.domainName,
       apiHostname: 'api',
       singleTableDatastore,
+      authentication,
       cors: true,
       additionalEnv: {
         DOMAIN_NAME: props.domainName,
