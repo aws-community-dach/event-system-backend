@@ -33,6 +33,11 @@ project.package.addPackageResolutions('constructs@^10.3.0');
 project.package.addPackageResolutions('projen@0.81.17');
 project.package.addPackageResolutions('@aws-cdk/aws-cognito-identitypool-alpha@2.137.0-alpha.0');
 
+project.addTask('test:integ', {
+  exec: 'npx jest -u --testMatch=\'**/test/integ/*.e2e.ts\'',
+  receiveArgs: true,
+});
+
 new GithubCDKPipeline(project, {
   iamRoleArns: {
     default: 'arn:aws:iam::002630180209:role/GitHub-event-system',

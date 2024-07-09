@@ -33,11 +33,13 @@ export const Schema = {
     "Event": {
       "PK": {
         "type": String,
-        "value": "EVENT#${id}"
+        "value": "EVENT#${id}",
+        "hidden": false
       },
       "SK": {
         "type": String,
-        "value": "DETAILS"
+        "value": "DETAILS",
+        "hidden": false
       },
       "id": {
         "type": String,
@@ -46,11 +48,13 @@ export const Schema = {
       },
       "GSI1PK": {
         "type": String,
-        "value": "EVENTS"
+        "value": "EVENTS",
+        "hidden": false
       },
       "GSI1SK": {
         "type": String,
-        "value": "${date}"
+        "value": "${date}",
+        "hidden": false
       },
       "name": {
         "type": String,
