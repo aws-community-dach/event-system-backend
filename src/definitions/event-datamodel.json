@@ -14,11 +14,13 @@
     "Event": {
       "PK": {
         "type": "string",
-        "value": "EVENT#${id}"
+        "value": "EVENT#${id}",
+        "hidden": false
       },
       "SK": {
         "type": "string",
-        "value": "DETAILS"
+        "value": "DETAILS",
+        "hidden": false
       },
       "id": {
         "type": "string",
@@ -27,11 +29,13 @@
       },
       "GSI1PK": {
         "type": "string",
-        "value": "EVENTS"
+        "value": "EVENTS",
+        "hidden": false
       },
       "GSI1SK": {
         "type": "string",
-        "value": "${date}"
+        "value": "${date}",
+        "hidden": false
       },
       "name": {
         "type": "string",
@@ -52,11 +56,13 @@
     "Participant": {
       "PK": {
         "type": "string",
-        "value": "EVENT#${eventId}"
+        "value": "EVENT#${eventId}",
+        "hidden": false
       },
       "SK": {
         "type": "string",
-        "value": "PARTICIPANT#${participantId}"
+        "value": "PARTICIPANT#${participantId}",
+        "hidden": false
       },
       "eventId": {
         "type": "string",
@@ -64,11 +70,13 @@
       },
       "GSI1PK": {
         "type": "string",
-        "value": "PARTICIPANTS"
+        "value": "PARTICIPANTS",
+        "hidden": false
       },
       "GSI1SK": {
         "type": "string",
-        "value": "${email}"
+        "value": "${email}",
+        "hidden": false
       },
       "name": {
         "type": "string",
