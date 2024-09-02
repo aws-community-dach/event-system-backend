@@ -40,6 +40,7 @@ new GithubCDKPipeline(project, {
   },
   pkgNamespace: '@aws-community-dach',
   useGithubPackagesForAssembly: true,
+  useGithubEnvironments: true,
   stages: [{
     env: {
       account: '574436697058',
@@ -52,7 +53,6 @@ new GithubCDKPipeline(project, {
       region: 'eu-central-1',
     },
     name: 'prod',
-    manualApproval: true,
   }],
 });
 
