@@ -194,8 +194,24 @@
       "name": "publish:assets",
       "steps": [
         {
-          "exec": "npx cdk-assets -p cdk.out/event-system-backend-dev.assets.json publish"
+          "spawn": "publish:assets:dev"
         },
+        {
+          "spawn": "publish:assets:prod"
+        }
+      ]
+    },
+    "publish:assets:dev": {
+      "name": "publish:assets:dev",
+      "steps": [
+        {
+          "exec": "npx cdk-assets -p cdk.out/event-system-backend-dev.assets.json publish"
+        }
+      ]
+    },
+    "publish:assets:prod": {
+      "name": "publish:assets:prod",
+      "steps": [
         {
           "exec": "npx cdk-assets -p cdk.out/event-system-backend-prod.assets.json publish"
         }
@@ -271,13 +287,13 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/aws-lambda,@types/jest,@types/js-yaml,@types/lambda-log,@types/standard-version,@types/uuid,cdk-assets,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jest,projen,standard-version,ts-jest,ts-node,typescript,@aws-sdk/client-dynamodb,@aws-sdk/client-s3,@aws-sdk/client-sesv2,@aws-sdk/lib-dynamodb,cdk-serverless,date-fns,dynamodb-onetable,js-yaml,openapi-typescript,projen-pipelines,uuid"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/aws-lambda,@types/jest,@types/js-yaml,@types/lambda-log,@types/standard-version,@types/uuid,cdk-assets,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jest,projen,projen-pipelines,standard-version,ts-jest,ts-node,typescript,@aws-sdk/client-dynamodb,@aws-sdk/client-s3,@aws-sdk/client-sesv2,@aws-sdk/lib-dynamodb,cdk-serverless,date-fns,dynamodb-onetable,js-yaml,openapi-typescript,uuid"
         },
         {
           "exec": "npm install"
         },
         {
-          "exec": "npm update @types/aws-lambda @types/jest @types/js-yaml @types/lambda-log @types/node @types/standard-version @types/uuid @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk cdk-assets esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit projen standard-version ts-jest ts-node typescript @aws-cdk/aws-cognito-identitypool-alpha @aws-sdk/client-dynamodb @aws-sdk/client-s3 @aws-sdk/client-sesv2 @aws-sdk/lib-dynamodb aws-cdk-lib cdk-serverless constructs date-fns dynamodb-onetable js-yaml openapi-typescript projen-pipelines uuid"
+          "exec": "npm update @types/aws-lambda @types/jest @types/js-yaml @types/lambda-log @types/node @types/standard-version @types/uuid @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk cdk-assets esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit projen projen-pipelines standard-version ts-jest ts-node typescript @aws-cdk/aws-cognito-identitypool-alpha @aws-sdk/client-dynamodb @aws-sdk/client-s3 @aws-sdk/client-sesv2 @aws-sdk/lib-dynamodb aws-cdk-lib cdk-serverless constructs date-fns dynamodb-onetable js-yaml openapi-typescript uuid"
         },
         {
           "exec": "npx projen"

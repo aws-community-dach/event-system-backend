@@ -33,7 +33,7 @@ jobs:
       - run: mv ./node_modules/@aws-community-dach/event-system-backend cdk.out
       - run: npx projen deploy:prod
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.6
         with:
           name: cdk-outputs-prod
           path: cdk-outputs-prod.json

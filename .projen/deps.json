@@ -31,17 +31,17 @@
     },
     {
       "name": "@typescript-eslint/eslint-plugin",
-      "version": "^6",
+      "version": "^7",
       "type": "build"
     },
     {
       "name": "@typescript-eslint/parser",
-      "version": "^6",
+      "version": "^7",
       "type": "build"
     },
     {
       "name": "aws-cdk",
-      "version": "2.137.0",
+      "version": "2.152.0",
       "type": "build"
     },
     {
@@ -79,6 +79,10 @@
       "type": "build"
     },
     {
+      "name": "projen-pipelines",
+      "type": "build"
+    },
+    {
       "name": "standard-version",
       "type": "build"
     },
@@ -96,7 +100,7 @@
     },
     {
       "name": "@aws-cdk/aws-cognito-identitypool-alpha",
-      "version": "2.137.0-alpha.0",
+      "version": "2.152.0-alpha.0",
       "type": "override"
     },
     {
@@ -105,13 +109,8 @@
       "type": "override"
     },
     {
-      "name": "projen",
-      "version": "0.81.17",
-      "type": "override"
-    },
-    {
       "name": "@aws-cdk/aws-cognito-identitypool-alpha",
-      "version": "2.137.0-alpha.0",
+      "version": "2.152.0-alpha.0",
       "type": "runtime"
     },
     {
@@ -132,7 +131,7 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "2.137.0",
+      "version": "2.152.0",
       "type": "runtime"
     },
     {
@@ -162,14 +161,6 @@
     },
     {
       "name": "openapi-typescript",
-      "type": "runtime"
-    },
-    {
-      "name": "projen",
-      "type": "runtime"
-    },
-    {
-      "name": "projen-pipelines",
       "type": "runtime"
     },
     {

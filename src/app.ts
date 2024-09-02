@@ -36,11 +36,11 @@ export class PipelineApp extends App {
 
     // If a function is provided for creating a dev stack, it is called with necessary arguments.
     if (props.provideDevStack) {
-      props.provideDevStack(this, 'event-system-backend-dev', { env: {"account":"574436697058","region":"eu-central-1"}, stackName: 'event-system-backend-dev', stageName: 'dev' });
+      props.provideDevStack(this, 'event-system-backend-dev', { env: { account: '574436697058', region: 'eu-central-1' }, stackName: 'event-system-backend-dev', stageName: 'dev' });
     }
     // If a function is provided for creating a prod stack, it is called with necessary arguments.
     if (props.provideProdStack) {
-      props.provideProdStack(this, 'event-system-backend-prod', { env: {"account":"451567866306","region":"eu-central-1"}, stackName: 'event-system-backend-prod', stageName: 'prod' });
+      props.provideProdStack(this, 'event-system-backend-prod', { env: { account: '451567866306', region: 'eu-central-1' }, stackName: 'event-system-backend-prod', stageName: 'prod' });
     }
 
 

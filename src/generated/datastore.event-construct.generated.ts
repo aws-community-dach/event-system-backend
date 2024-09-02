@@ -40,7 +40,10 @@ export class EventDatastore extends SingleTableDatastore {
         ],
       }
     });
-    new CfnOutput(this, 'EventTableName', { value: this.table.tableName });
+    new CfnOutput(this, 'EventTableName', {
+      key: 'EventTableName',
+      value: this.table.tableName,
+    });
   }
 
 }
