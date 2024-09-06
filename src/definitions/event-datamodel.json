@@ -92,6 +92,10 @@
         "type": "boolean",
         "required": true
       },
+      "checkedIn": {
+        "type": "boolean",
+        "required": true
+      },
       "participantId": {
         "type": "string",
         "generate": "uuid",

@@ -49,6 +49,16 @@ export interface paths {
       };
     };
   };
+  "/events/{eventId}/participants/{participantId}/checkin": {
+    /** checks in the participant */
+    put: operations["checkinEventParticipant"];
+    parameters: {
+      path: {
+        eventId: components["parameters"]["eventId"];
+        participantId: components["parameters"]["participantId"];
+      };
+    };
+  };
 }
 
 export type webhooks = Record<string, never>;
@@ -60,6 +70,7 @@ export interface components {
       displayName?: string;
       email?: string;
       customData?: Record<string, never>;
+      checkedIn?: boolean;
     };
     Event: {
       name?: string;
@@ -268,6 +279,26 @@ export interface operations {
       204: {
         content: never;
       };
+    };
+  };
+  /** checks in the participant */
+  checkinEventParticipant: {
+    parameters: {
+      path: {
+        eventId: components["parameters"]["eventId"];
+        participantId: components["parameters"]["participantId"];
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": {
+          token?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description Updated participant data */
+      200: components["requestBodies"]["Participant"];
     };
   };
 }

@@ -19,5 +19,6 @@ export const handler = api.createOpenApiHandler<operations['getEventParticipant'
     displayName: participant.displayName!,
     email: participant.email!,
     customData: JSON.parse(participant.customData!),
+    checkedIn: participant.checkedIn! ?? false,
   };
 });

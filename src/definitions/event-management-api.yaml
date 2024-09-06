@@ -116,6 +116,29 @@ paths:
         204:
           description: Deregistered particpant from event
 
+  /events/{eventId}/participants/{participantId}/checkin:
+    parameters:
+      - $ref: '#/components/parameters/eventId'
+      - $ref: '#/components/parameters/participantId'
+    put:
+      tags:
+        - Events
+      summary: checks in the participant
+      operationId: checkinEventParticipant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      responses:
+        200:
+          $ref: '#/components/requestBodies/Participant'
+          description: Updated participant data      
+
 components:
   parameters:
     eventId:
@@ -208,6 +231,8 @@ components:
           type: string
         customData:
           type: object
+        checkedIn:
+          type: boolean
     Event:
       type: object
       properties:

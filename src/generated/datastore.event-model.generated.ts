@@ -111,6 +111,10 @@ export const Schema = {
         "type": Boolean,
         "required": true
       },
+      "checkedIn": {
+        "type": Boolean,
+        "required": true
+      },
       "participantId": {
         "type": String,
         "generate": "uuid",
