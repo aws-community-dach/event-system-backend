@@ -24,7 +24,7 @@ export async function sendEmail(to: string | string[], templateName: string, dat
       FromEmailAddress: 'info@aws-community.de',
       Destination: {
         ToAddresses: Array.isArray(to) ? to : [to],
-        BccAddresses: ['info+awscommunity@taimos.de'], // For Debugging
+        BccAddresses: env.MAIL_COPY == 'true' ? ['info+awscommunity@taimos.de'] : [], // For Debugging
       },
     }));
   } catch (error) {

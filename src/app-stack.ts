@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import * as cdk from 'aws-cdk-lib';
-import { CognitoAuthentication } from 'cdk-serverless/lib/constructs';
+import { CognitoAuthentication, LambdaFunction } from 'cdk-serverless/lib/constructs';
 import { Construct } from 'constructs';
 import { PipelineAppStackProps } from './app';
 import { EventDatastore } from './generated/datastore.event-construct.generated';
@@ -49,12 +49,15 @@ export class ApplicationStack extends cdk.Stack {
       cors: true,
       additionalEnv: {
         DOMAIN_NAME: props.domainName,
+        MAIL_COPY: 'true',
       },
     });
 
     api.getFunctionForOperation('registerEventParticipant').grantSendEmails();
 
     this.createSesTemplate('confirm-registration', 'AWS Community DACH - Event registration');
+    this.createSesTemplate('reminder', 'AWS Community DACH - Event reminder');
+    this.createSesTemplate('checkin', 'AWS Community DACH - Event check-in');
 
     const cognitoClientWebsite = authentication.userpool.addClient('UserPoolClientWebsite', {
       authFlows: {
@@ -63,6 +66,28 @@ export class ApplicationStack extends cdk.Stack {
       },
     });
     new cdk.CfnOutput(this, 'UserPoolClientWebsiteId', { value: cognitoClientWebsite.userPoolClientId });
+
+
+    new LambdaFunction(this, 'ReminderEmail', {
+      entry: './src/lambda/manual.reminder.ts',
+      table: singleTableDatastore.table,
+      additionalEnv: {
+        DOMAIN_NAME: props.domainName,
+      },
+      lambdaOptions: {
+        timeout: cdk.Duration.minutes(10),
+      },
+    }).grantSendEmails();
+    new LambdaFunction(this, 'CheckinEmail', {
+      entry: './src/lambda/manual.checkin.ts',
+      table: singleTableDatastore.table,
+      additionalEnv: {
+        DOMAIN_NAME: props.domainName,
+      },
+      lambdaOptions: {
+        timeout: cdk.Duration.minutes(10),
+      },
+    }).grantSendEmails();
   }
 
   private createSesTemplate(name: string, subject: string) {
