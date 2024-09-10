@@ -93,8 +93,7 @@
         "required": true
       },
       "checkedIn": {
-        "type": "boolean",
-        "required": true
+        "type": "boolean"
       },
       "participantId": {
         "type": "string",

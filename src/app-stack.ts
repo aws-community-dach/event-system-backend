@@ -69,6 +69,7 @@ export class ApplicationStack extends cdk.Stack {
 
 
     new LambdaFunction(this, 'ReminderEmail', {
+      stageName: props.stageName,
       entry: './src/lambda/manual.reminder.ts',
       table: singleTableDatastore.table,
       additionalEnv: {
@@ -79,6 +80,7 @@ export class ApplicationStack extends cdk.Stack {
       },
     }).grantSendEmails();
     new LambdaFunction(this, 'CheckinEmail', {
+      stageName: props.stageName,
       entry: './src/lambda/manual.checkin.ts',
       table: singleTableDatastore.table,
       additionalEnv: {
