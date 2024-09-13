@@ -27,5 +27,6 @@ export const handler = async ({ eventId }: ReminderInfo) => {
       console.log(error);
       console.log(`Failed to send checkin email to ${participant.email}`);
     }
+    await new Promise((resolve) => setTimeout(resolve, 100));
   }
 };
