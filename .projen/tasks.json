@@ -270,6 +270,15 @@
         }
       ]
     },
+    "test:integ": {
+      "name": "test:integ",
+      "steps": [
+        {
+          "exec": "npx jest -u --testMatch='**/test/integ/*.e2e.ts'",
+          "receiveArgs": true
+        }
+      ]
+    },
     "test:watch": {
       "name": "test:watch",
       "description": "Run jest in watch mode",

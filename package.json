@@ -25,6 +25,7 @@
     "synth": "npx projen synth",
     "synth:silent": "npx projen synth:silent",
     "test": "npx projen test",
+    "test:integ": "npx projen test:integ",
     "test:watch": "npx projen test:watch",
     "upgrade": "npx projen upgrade",
     "projen": "npx projen"
